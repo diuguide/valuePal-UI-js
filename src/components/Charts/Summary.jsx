@@ -2,30 +2,41 @@ import { Row, Col } from "react-bootstrap";
 import Chart from "react-apexcharts";
 import { timeConvertArray } from "../../utilities/stockData";
 
-const Summary  = ({ stockData }) => {
-  console.log("data inside summary", stockData);
-
-  
+const Summary = ({ stockData }) => {
   const chartState = {
-    
     options: {
       chart: {
-        id: "basic-bar",
+        type: "area",
+      },
+      stroke: {
+        curve: "smooth",
       },
       xaxis: {
+        axisTicks: {
+          show: false,
+        },
+        axisBorder: {
+          show: false,
+        },
         categories: timeConvertArray(stockData.timestamp),
         labels: {
           show: false,
         },
       },
       yaxis: {
-        min: Math.min(...stockData.close) - 10,
-        max: Math.max(...stockData.close) + 10,
+        min: Math.min(...stockData.close) - 500,
+        max: Math.max(...stockData.close) + 100,
+        opposite: true,
+        tickAmount: 5,
       },
-      
       title: {
         text: stockData.exchange,
-      }
+        align: "left",
+      },
+      subtitle: {
+        text: stockData.fullExchangeName,
+        align: "left",
+      },
     },
     series: [
       {
@@ -37,13 +48,11 @@ const Summary  = ({ stockData }) => {
 
   return (
     <Row>
-      <Col>
+      <Col style={{ width: "200px" }}>
         <Chart
-        
           options={chartState.options}
           series={chartState.series}
           type="bar"
-          width="500"
         />
       </Col>
     </Row>

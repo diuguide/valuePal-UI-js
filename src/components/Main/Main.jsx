@@ -4,8 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { dataState, yahooSummary } from "../../slice/data/dataSlice";
 import Summary from "../Charts/Summary";
 
-
-
 const Main = () => {
   const auth = useSelector(authState);
   const data = useSelector(dataState);
@@ -19,17 +17,23 @@ const Main = () => {
       {auth.isAuthenticated ? (
         <Row>
           <Col>
-            <h1>main test</h1>
             <Button onClick={handleClick}>Click</Button>
-            {data.dataLoaded &&
-            <> 
-            {data.data.map((market, index) => {
-                return (
-                   <Summary stockData={market} /> 
-                )
-            })}
-            </>
-            }
+            <Row>
+              {data.dataLoaded && (
+                <>
+                  {data.data.map((market, index) => {
+                    console.log("market.timstamp", market.timestamp);
+                    if (market.timestamp.length != 0) {
+                      return (
+                        <Col lg={4}>
+                          <Summary stockData={market} />
+                        </Col>
+                      );
+                    }
+                  })}
+                </>
+              )}
+            </Row>
           </Col>
         </Row>
       ) : (
