@@ -29,13 +29,14 @@ const Login = () => {
     dispatch(isLoading());
     loginUser(loginCreds)
       .then((res) => {
+        console.log("response login: ", res);
         setloginCreds({
           username: "",
           password: "",
         });
         if (res.status === 200) {
+          localStorage.setItem('authorization', res.headers.authorization);
           dispatch(isLoaded(res.headers.authorization));
-          history.push("/main");
         }
       })
       .catch((err) => {

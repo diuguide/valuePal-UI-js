@@ -1,21 +1,30 @@
 import { Row, Col } from "react-bootstrap";
 import Chart from "react-apexcharts";
 import { timeConvertArray } from "../../utilities/stockData";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { dataState } from "../../slice/data/dataSlice";
 
-const Summary = ({ stockData }) => {
-  console.log("Stock data: ", stockData);
-  const data = useSelector(dataState);
-  const chartRef = useRef();
+const Summary = ({ ticker }) => {
+  console.log("Stock ticker: ", ticker);
+  const chartData = useSelector(dataState);
+
+  const [ chartObj, setChartObj ] = useState({
+      exchange: "",
+      fullExchangeName: "",
+      close: [],
+      timestamp: []
+    });
 
   useEffect(() => {
-    chartRef.current = filterData(stockData);
-  }, [stockData]);
+    console.log("useEffect Fired: ", ticker);
+    filterData(ticker);
+  }, [ticker]);
 
-  const filterData = (value) => {
-    return data.data.filter(el => el.exchange == value);
+  const filterData = (target) => {
+    let filtered = chartData.data.filter(el => el.exchange == target);
+    console.log("filtered: ", filtered[0]);
+    setChartObj(filtered[0]);
   }
   const chartState = {
     options: {
@@ -32,30 +41,30 @@ const Summary = ({ stockData }) => {
         axisBorder: {
           show: false,
         },
-        categories: timeConvertArray(chartRef.current.timestamp),
+        categories: timeConvertArray(chartObj.timestamp),
         labels: {
           show: false,
         },
       },
       yaxis: {
-        min: Math.min(...chartRef.current.close) - 500,
-        max: Math.max(...chartRef.current.close) + 100,
+        min: Math.min(...chartObj.close) - 500,
+        max: Math.max(...chartObj.close) + 100,
         opposite: true,
         tickAmount: 5,
       },
       title: {
-        text: chartRef.current.exchange,
+        text: chartObj.exchange,
         align: "left",
       },
       subtitle: {
-        text: chartRef.current.fullExchangeName,
+        text: chartObj.fullExchangeName,
         align: "left",
       },
     },
     series: [
       {
         name: "series-1",
-        data: chartRef.current.close,
+        data: chartObj.close,
       },
     ],
   };
