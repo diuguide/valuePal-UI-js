@@ -1,8 +1,11 @@
 import axios from "axios";
 
+const localUrl = "http://localhost:8080/";
+const awsUrl = "http://testenv-env.eba-xk2s4afv.us-east-1.elasticbeanstalk.com/";
+
 //Client connection
 export const authClient = axios.create({
-  baseURL: "http://localhost:8080/",
+  baseURL: awsUrl,
   headers: {
     "Content-Type": "application/json",
   },

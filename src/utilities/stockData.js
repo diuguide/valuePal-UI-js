@@ -1,4 +1,3 @@
-import axios from "axios";
 import { authClient } from "./auth";
 
 export const summaryData = async () => {
@@ -6,44 +5,6 @@ export const summaryData = async () => {
   console.log("Response summary data: ", response);
   return response;
 }  
-
-export const yahoo = async (params, endpoint) => {
-  let options = {
-    method: "GET",
-    url: `https://apidojo-yahoo-finance-v1.p.rapidapi.com/${endpoint}`,
-    params: params,
-    headers: {
-      "x-rapidapi-key": process.env.REACT_APP_YAHOO_API,
-      "x-rapidapi-host": process.env.REACT_APP_YAHOO_HOST,
-    },
-  };
-  
-  let dataObject = {
-    exchangeName: "",
-    close: [],
-    timestamp: [],
-  };
-
-  await axios
-    .request(options)
-    .then(function (response) {
-      console.log(
-        "response: ",
-        response.data.marketSummaryAndSparkResponse.result
-      );
-      dataObject.exchangeName = response.data.marketSummaryAndSparkResponse.result[8].shortName;
-      dataObject.close =
-        response.data.marketSummaryAndSparkResponse.result[8].spark.close;
-      let timeData =
-        response.data.marketSummaryAndSparkResponse.result[8].spark.timestamp;
-      timeData.map((time) => dataObject.timestamp.push(timeConverter(time)));
-      console.log("dataObject: ", dataObject);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  return dataObject;
-};
 
 export const timeConvertArray = (ar) => {
   let newAr = [];
