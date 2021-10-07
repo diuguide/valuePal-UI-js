@@ -28,9 +28,6 @@ const Summary = ({ ticker }) => {
   }
   const chartState = {
     options: {
-      chart: {
-        type: "area",
-      },
       stroke: {
         curve: "smooth",
       },
@@ -71,11 +68,12 @@ const Summary = ({ ticker }) => {
 
   return (
     <Row>
-      <Col style={{ width: "200px" }}>
+      <Col>
         <Chart
           options={chartState.options}
           series={chartState.series}
-          type="bar"
+          type="area"
+          width="500"
         />
       </Col>
     </Row>
