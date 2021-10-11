@@ -12,9 +12,9 @@ function App() {
       <NavBar />
       <Container>
         <Switch>
-          <Route exact path="/" component={Welcome}></Route>
-          <Route exact path="/login" component={Login}></Route>
-          <Route exact path="/register" component={Register}></Route>
+          <Route exact path="/" ><Welcome /></Route>
+          <Route exact path="/login" ><Login /></Route>
+          <Route exact path="/register" ><Register /></Route>
         </Switch>
       </Container>
     </Router>
