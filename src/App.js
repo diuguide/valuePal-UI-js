@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import Register from "./components/Auth/Register";
+import Register from "./components/Auth/index";
 import Login from "./components/Auth/Login";
 import Welcome from "./components/Main/Welcome";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -13,8 +13,8 @@ function App() {
       <Container>
         <Switch>
           <Route exact path="/" ><Welcome /></Route>
-          <Route exact path="/login" ><Login /></Route>
-          <Route exact path="/register" ><Register /></Route>
+          <Route path="/login" ><Login /></Route>
+          <Route path="/register" ><Register /></Route>
         </Switch>
       </Container>
     </Router>
