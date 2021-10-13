@@ -24,8 +24,8 @@ const Welcome = () => {
       <Row className="d-flex justify-content-center">
         {twitterHandle.map((tw, index) => {
           return (
-            <Col>
-              <TwitterFeed key={index} twitterHandle={tw} />;
+            <Col key={index}>
+              <TwitterFeed  twitterHandle={tw} />;
             </Col>
           );
         })}
