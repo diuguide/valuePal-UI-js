@@ -1,13 +1,19 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
+  const linkStyle = {
+    textDecoration: "none",
+    margin: "2px",
+    color: "white"
+  };
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
         <Navbar.Brand href="/">ValuePal</Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link href="/register">Register</Nav.Link>
-          <Nav.Link href="/logout">Logout</Nav.Link>
+          <Link style={linkStyle} to="/register">Register</Link>
+          <Link style={linkStyle} to="/logout">Logout</Link>
         </Nav>
       </Container>
     </Navbar>
