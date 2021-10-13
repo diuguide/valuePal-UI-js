@@ -50,7 +50,7 @@ const Login = () => {
   return (
     <Row>
       <Col>
-        <Form>
+        <Form className="d-flex">
           <Form.Group className="m-2">
             <Form.Control
               type="text"
@@ -75,7 +75,7 @@ const Login = () => {
             </Alert>
           )}
           <Button className="m-2" onClick={handleClick}>
-            Submit
+            Login
           </Button>
         </Form>
       </Col>
