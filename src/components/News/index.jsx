@@ -26,27 +26,17 @@ const NewsFeed = () => {
             <thead>
               <tr>
                 <th>Get The Latest News from YahooFinance!</th>
-                <th>Date of Story</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               {newsData.data.data.main.stream.map((el, index) => {
-                if (el.content.clickThroughUrl) {
+                if (el.content.thumbnail) {
                   return (
-                    <tr>
-                      <a
-                        target="_blank"
-                        style={styleLink}
-                        href={
-                          el.content.clickThroughUrl
-                            ? el.content.clickThroughUrl.url
-                            : undefined
-                        }
-                      >
-                        <td>{el.content.title}</td>
-                      </a>
-                      <td>{el.content.pubDate}</td>
-                    </tr>
+                    <tr key={index}>
+                       <td>{el.content.title}</td>
+                       <td><img src={el.content.thumbnail.resolutions[1].url} alt="thumbnail image"></img></td>
+                     </tr>
                   );
                 }
                 return;

@@ -23,12 +23,16 @@ const Main = () => {
     setChartValue(value);
   };
 
+  const formStyle = {
+    width: "500px"
+  }
+
   return (
-    <Row className="p-4">
-      <Col lg={6}>
+    <Row className="d-flex justify-content-end">
+      <Col  lg={6}>
         <Row>
-          <Col>
-            <Form>
+          <Col className="d-flex justify-content-center">
+            <Form style={formStyle}>
               <Form.Select onChange={handleChange}>
                 <option>Select a market...</option>
                 {data.data.map((el, index) => {
@@ -48,7 +52,7 @@ const Main = () => {
         <Row>
           {data.dataLoaded && (
             <>
-              <Col>
+              <Col className="d-flex justify-content-center">
                 <Summary ticker={chartValue} />
               </Col>
             </>
