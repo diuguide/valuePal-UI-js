@@ -15,7 +15,8 @@ const NewsFeed = () => {
   };
 
   const styleLink = {
-    textDecoration: "none",
+    fontSize: "20px",
+    fontWeight: 800
   };
   const styleContainer = {
       height: "50vh",
@@ -27,19 +28,17 @@ const NewsFeed = () => {
       {newsData.dataLoaded && (
         <Col>
           <Table hover>
-            <thead>
-              <tr>
-                <th>Get The Latest News from YahooFinance!</th>
-                <th></th>
-              </tr>
-            </thead>
             <tbody>
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>  
               {newsData.data.data.main.stream.map((el, index) => {
                 if (el.content.thumbnail) {
                   return (
                     <tr key={index}>
-                       <td>{el.content.title}</td>
-                       <td><img src={el.content.thumbnail.resolutions[1].url} alt="thumbnail image"></img></td>
+                       <td style={styleLink}>{el.content.title}</td>
+                       <td><img width="70" src={el.content.thumbnail.resolutions[1].url} alt="thumbnail image"></img></td>
                      </tr>
                   );
                 }
