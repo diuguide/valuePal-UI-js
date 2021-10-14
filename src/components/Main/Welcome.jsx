@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { authState } from "../../slice/auth/authSlice";
 import Main from "../Charts/Main";
 import TwitterFeed from "../Twitter";
+import NewsFeed from "../News";
 
 const Welcome = () => {
   const auth = useSelector(authState);
@@ -12,9 +13,7 @@ const Welcome = () => {
   return (
     <Container>
       <Row className="mt-4">
-        <Col>
-          {auth.isLoading ? <Loader /> : <Login />}
-        </Col>
+        <Col>{auth.isLoading ? <Loader /> : <Login />}</Col>
       </Row>
       <Row>
         <Col>
@@ -25,10 +24,15 @@ const Welcome = () => {
         {twitterHandle.map((tw, index) => {
           return (
             <Col key={index}>
-              <TwitterFeed  twitterHandle={tw} />;
+              <TwitterFeed twitterHandle={tw} />;
             </Col>
           );
         })}
+      </Row>
+      <Row>
+        <Col>
+          <NewsFeed />
+        </Col>
       </Row>
     </Container>
   );

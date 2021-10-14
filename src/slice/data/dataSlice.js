@@ -2,9 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { summaryData } from "../../utilities/stockData";
 
 export const yahooSummary = createAsyncThunk("fetchSummmary", async () => {
-  console.log("fired");
   const response = await summaryData();
-  console.log("Response thunk summary: ", response.data);
   return response;
 });
 

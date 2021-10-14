@@ -2,9 +2,13 @@ import { authClient } from "./auth";
 
 export const summaryData = async () => {
   let response = await authClient.get("/calls/getSummary");
-  console.log("Response summary data: ", response);
   return response;
-}  
+}
+
+export const newsData = async () => {
+  let response = await authClient.get("/calls/getNewsFeed");
+  return response;
+}
 
 export const timeConvertArray = (ar) => {
   let newAr = [];
