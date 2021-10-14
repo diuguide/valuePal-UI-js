@@ -44,8 +44,8 @@ const Summary = ({ ticker }) => {
         },
       },
       yaxis: {
-        min: Math.min(...chartObj.close) - 500,
-        max: Math.max(...chartObj.close) + 100,
+        min: Math.min(...chartObj.close) - 40,
+        max: Math.max(...chartObj.close) + 40,
         opposite: true,
         tickAmount: 5,
       },

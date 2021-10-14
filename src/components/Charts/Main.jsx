@@ -25,18 +25,7 @@ const Main = () => {
 
   return (
     <Row className="p-4">
-      <Col lg={9}>
-        <Row>
-          {data.dataLoaded && (
-            <>
-              <Col>
-                <Summary ticker={chartValue} />
-              </Col>
-            </>
-          )}
-        </Row>
-      </Col>
-      <Col lg={3}>
+      <Col lg={6}>
         <Row>
           <Col>
             <Form>
@@ -55,6 +44,15 @@ const Main = () => {
               </Form.Select>
             </Form>
           </Col>
+        </Row>
+        <Row>
+          {data.dataLoaded && (
+            <>
+              <Col>
+                <Summary ticker={chartValue} />
+              </Col>
+            </>
+          )}
         </Row>
       </Col>
     </Row>

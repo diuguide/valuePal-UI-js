@@ -25,8 +25,8 @@ const NewsFeed = () => {
           <Table hover>
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Date</th>
+                <th>Get The Latest News from YahooFinance!</th>
+                <th>Date of Story</th>
               </tr>
             </thead>
             <tbody>
