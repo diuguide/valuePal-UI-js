@@ -17,9 +17,13 @@ const NewsFeed = () => {
   const styleLink = {
     textDecoration: "none",
   };
+  const styleContainer = {
+      height: "50vh",
+      overflow: "scroll"
+  }
 
   return (
-    <Row>
+    <Row style={styleContainer}>
       {newsData.dataLoaded && (
         <Col>
           <Table hover>

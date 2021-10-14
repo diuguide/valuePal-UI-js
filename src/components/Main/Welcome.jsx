@@ -20,6 +20,11 @@ const Welcome = () => {
           <Main />
         </Col>
       </Row>
+      <Row>
+        <Col>
+          <NewsFeed />
+        </Col>
+      </Row>
       <Row className="d-flex justify-content-center">
         {twitterHandle.map((tw, index) => {
           return (
@@ -28,11 +33,6 @@ const Welcome = () => {
             </Col>
           );
         })}
-      </Row>
-      <Row>
-        <Col>
-          <NewsFeed />
-        </Col>
       </Row>
     </Container>
   );
