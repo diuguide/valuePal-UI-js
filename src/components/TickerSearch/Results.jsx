@@ -23,7 +23,7 @@ const TickerResults = () => {
       width: "100%",
     },
     time: {
-        borderTop: "1px solid black"
+      borderTop: "1px solid black",
     },
     marketChange: {
       padding: "15px",

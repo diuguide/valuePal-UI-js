@@ -1,5 +1,6 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Login from "../Auth/Login";
 
 const NavBar = () => {
   const linkStyle = {
@@ -11,7 +12,8 @@ const NavBar = () => {
     <Navbar bg="dark" variant="dark">
       <Container>
         <Navbar.Brand href="/">ValuePal</Navbar.Brand>
-        <Nav className="me-auto">
+        <Nav className="d-flex justify-content-end">
+          <Login />
           <Link style={linkStyle} to="/register">Register</Link>
           <Link style={linkStyle} to="/logout">Logout</Link>
         </Nav>

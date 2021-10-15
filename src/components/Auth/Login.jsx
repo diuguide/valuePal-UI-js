@@ -25,7 +25,8 @@ const Login = () => {
     setloginCreds({ ...loginCreds, [name]: value });
   };
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     dispatch(isLoading());
     loginUser(loginCreds)
       .then((res) => {
@@ -35,7 +36,7 @@ const Login = () => {
           password: "",
         });
         if (res.status === 200) {
-          localStorage.setItem('authorization', res.headers.authorization);
+          localStorage.setItem("authorization", res.headers.authorization);
           dispatch(isLoaded(res.headers.authorization));
         }
       })
@@ -47,36 +48,46 @@ const Login = () => {
       });
   };
 
+  const formStyle = {
+    input: {
+      height: "20px",
+      width: "110px",
+      margin: "5px",
+      fontSize: "10px"
+    },
+    button: {
+      fontSize: "10px"
+    },
+  };
+
   return (
     <Row>
       <Col>
-        <Form className="d-flex">
-          <Form.Group className="m-2">
-            <Form.Control
+        <Form className="d-flex align-items-center">
+          <Form.Group className="">
+            <input
+              style={formStyle.input}
               type="text"
               name="username"
               value={loginCreds.username}
               onChange={handleChange}
               placeholder="Username"
-            ></Form.Control>
+            ></input>
           </Form.Group>
-          <Form.Group className="m-2">
-            <Form.Control
+          <Form.Group className="">
+            <input
+              style={formStyle.input}
               type="password"
               name="password"
               value={loginCreds.password}
               onChange={handleChange}
               placeholder="Password"
-            ></Form.Control>
+            ></input>
           </Form.Group>
-          {error.showMsg && (
-            <Alert className="m-2" variant="danger">
-              {error.msg}
-            </Alert>
-          )}
-          <Button className="m-2" onClick={handleClick}>
+          {error.showMsg && <Alert variant="danger">{error.msg}</Alert>}
+          <button style={formStyle.button} onClick={handleClick}>
             Login
-          </Button>
+          </button>
         </Form>
       </Col>
     </Row>

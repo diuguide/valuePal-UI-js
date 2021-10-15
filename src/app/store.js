@@ -11,12 +11,10 @@ export const store = configureStore({
     auth: authReducer,
     data: dataReducer,
     newsData: newsDataReducer,
-    ticker: tickerDataReducer
+    ticker: tickerDataReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),
 });
-
-

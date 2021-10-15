@@ -16,15 +16,12 @@ const Welcome = () => {
   const twitterHandle = ["DowJones", "Nasdaq", "CMEGroup"];
   return (
     <Container>
-      <Row className="mt-4">
-        <Col>{auth.isLoading ? <Loader /> : <Login />}</Col>
-      </Row>
       <Row>
         <Col className="p-4" lg={6}>
           <TickerSearch />
           {tickerData.dataLoaded && <TickerResults />}
         </Col>
-        <Col lg={6}>
+        <Col className="pt-4" lg={6}>
           <Main />
         </Col>
       </Row>
