@@ -9,12 +9,12 @@ const Summary = ({ ticker }) => {
   console.log("Stock ticker: ", ticker);
   const chartData = useSelector(dataState);
 
-  const [ chartObj, setChartObj ] = useState({
-      exchange: "",
-      fullExchangeName: "",
-      close: [],
-      timestamp: []
-    });
+  const [chartObj, setChartObj] = useState({
+    exchange: "",
+    fullExchangeName: "",
+    close: [],
+    timestamp: [],
+  });
 
   useEffect(() => {
     console.log("useEffect Fired: ", ticker);
@@ -22,14 +22,17 @@ const Summary = ({ ticker }) => {
   }, [ticker]);
 
   const filterData = (target) => {
-    let filtered = chartData.data.filter(el => el.exchange == target);
+    let filtered = chartData.data.filter((el) => el.exchange == target);
     console.log("filtered: ", filtered[0]);
     setChartObj(filtered[0]);
-  }
+  };
   const chartState = {
     options: {
+      dataLabels: {
+        enabled: false,
+      },
       stroke: {
-        curve: "smooth",
+        curve: "straight",
       },
       xaxis: {
         axisTicks: {
@@ -60,7 +63,7 @@ const Summary = ({ ticker }) => {
     },
     series: [
       {
-        name: "series-1",
+        name: "USD",
         data: chartObj.close,
       },
     ],

@@ -25,13 +25,20 @@ export const timeConvertArray = (ar) => {
   return newAr;
 }
 
-const timeConverter = (unix) => {
+export const timeConverter = (unix) => {
   let num = parseInt(unix);
   let date = new Date(num * 1000);
+  console.log("testing: ", date.toLocaleString());
   var hours = date.getHours();
   var minutes = "0" + date.getMinutes();
   var seconds = "0" + date.getSeconds();
   var formattedTime =
     hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
   return formattedTime;
+};
+
+export const timeConverterFull = (unix) => {
+  let num = parseInt(unix);
+  let date = new Date(num * 1000);
+  return date.toLocaleString();
 };

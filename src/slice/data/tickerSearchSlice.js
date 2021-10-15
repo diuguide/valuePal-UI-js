@@ -15,7 +15,7 @@ export const yahooTickerSearch = createAsyncThunk("fetchTicker", async (ticker) 
   };
 
   export const tickerDataSlice = createSlice({
-    name: "tickerData",
+    name: "ticker",
     initialState,
     reducers: {
       isLoading: (state) => {
@@ -31,6 +31,7 @@ export const yahooTickerSearch = createAsyncThunk("fetchTicker", async (ticker) 
       builder
         .addCase(yahooTickerSearch.pending, (state) => {
           state.dataLoading = true;
+          state.dataLoaded = false;
         })
         .addCase(yahooTickerSearch.fulfilled, (state, action) => {
           state.data = action.payload.data;
@@ -42,6 +43,6 @@ export const yahooTickerSearch = createAsyncThunk("fetchTicker", async (ticker) 
   
   export const { isLoading, isLoaded } = tickerDataSlice.actions;
   
-  export const tickerDataState = (state) => state.tickerData;
+  export const tickerDataState = (state) => state.ticker;
   
   export default tickerDataSlice.reducer;

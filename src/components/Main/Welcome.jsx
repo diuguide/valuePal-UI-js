@@ -7,9 +7,12 @@ import Main from "../Charts/Main";
 import TwitterFeed from "../Twitter";
 import NewsFeed from "../News";
 import TickerSearch from "../TickerSearch";
+import TickerResults from "../TickerSearch/Results";
+import { tickerDataState } from "../../slice/data/tickerSearchSlice";
 
 const Welcome = () => {
   const auth = useSelector(authState);
+  const tickerData = useSelector(tickerDataState);
   const twitterHandle = ["DowJones", "Nasdaq", "CMEGroup"];
   return (
     <Container>
@@ -17,8 +20,9 @@ const Welcome = () => {
         <Col>{auth.isLoading ? <Loader /> : <Login />}</Col>
       </Row>
       <Row>
-        <Col lg={6}>
+        <Col className="p-4" lg={6}>
           <TickerSearch />
+          {tickerData.dataLoaded && <TickerResults />}
         </Col>
         <Col lg={6}>
           <Main />
