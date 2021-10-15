@@ -28,8 +28,8 @@ const Main = () => {
   }
 
   return (
-    <Row className="d-flex justify-content-end">
-      <Col  lg={6}>
+    <Row className="d-flex justify-content-center">
+      <Col>
         <Row>
           <Col className="d-flex justify-content-center">
             <Form style={formStyle}>

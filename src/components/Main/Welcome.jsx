@@ -6,6 +6,7 @@ import { authState } from "../../slice/auth/authSlice";
 import Main from "../Charts/Main";
 import TwitterFeed from "../Twitter";
 import NewsFeed from "../News";
+import TickerSearch from "../TickerSearch";
 
 const Welcome = () => {
   const auth = useSelector(authState);
@@ -16,7 +17,10 @@ const Welcome = () => {
         <Col>{auth.isLoading ? <Loader /> : <Login />}</Col>
       </Row>
       <Row>
-        <Col>
+        <Col lg={6}>
+          <TickerSearch />
+        </Col>
+        <Col lg={6}>
           <Main />
         </Col>
       </Row>

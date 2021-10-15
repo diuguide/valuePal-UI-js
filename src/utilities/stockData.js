@@ -10,6 +10,13 @@ export const newsData = async () => {
   return response;
 }
 
+export const tickerData = async (ticker) => {
+  console.log("ticker inside util: ", ticker);
+  let response = await authClient.post(`/calls/ticker?ticker=${ticker}`);
+  console.log("server response: " + response);
+  return response;
+}
+
 export const timeConvertArray = (ar) => {
   let newAr = [];
   ar.forEach((each) => {
