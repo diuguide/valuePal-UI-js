@@ -53,10 +53,13 @@ const Login = () => {
       height: "20px",
       width: "110px",
       margin: "5px",
-      fontSize: "10px"
+      fontSize: "10px",
+      borderRadius: "10px",
+      paddingLeft: "10px"
     },
     button: {
-      fontSize: "10px"
+      fontSize: "10px",
+      borderRadius: "10px",
     },
   };
 

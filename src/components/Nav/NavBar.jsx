@@ -5,8 +5,9 @@ import Login from "../Auth/Login";
 const NavBar = () => {
   const linkStyle = {
     textDecoration: "none",
+    fontSize: "10px",
     margin: "2px",
-    color: "white"
+    color: "lightblue"
   };
   return (
     <Navbar bg="dark" variant="dark">
@@ -14,8 +15,11 @@ const NavBar = () => {
         <Navbar.Brand href="/">ValuePal</Navbar.Brand>
         <Nav className="d-flex justify-content-end">
           <Login />
-          <Link style={linkStyle} to="/register">Register</Link>
+          <div>
+            <Link style={linkStyle} to="/register">Register</Link>
           <Link style={linkStyle} to="/logout">Logout</Link>
+          </div>
+          
         </Nav>
       </Container>
     </Navbar>
