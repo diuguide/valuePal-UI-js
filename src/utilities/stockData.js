@@ -11,9 +11,15 @@ export const newsData = async () => {
 };
 
 export const tickerData = async (ticker) => {
-  console.log("ticker inside util: ", ticker);
   let response = await authClient.post(`/calls/ticker?ticker=${ticker}`);
-  console.log("server response: " + response);
+
+  return response;
+};
+
+export const tickerHistory = async (api, interval, range, ticker) => {
+  let response = await authClient.post(
+    `/calls/getHistory?api=${api}&interval=${interval}&range=${range}&ticker=${ticker}`
+  );
   return response;
 };
 
@@ -28,7 +34,7 @@ export const timeConvertArray = (ar) => {
 export const timeConverter = (unix) => {
   let num = parseInt(unix);
   let date = new Date(num * 1000);
-  console.log("testing: ", date.toLocaleString());
+
   var hours = date.getHours();
   var minutes = "0" + date.getMinutes();
   var seconds = "0" + date.getSeconds();

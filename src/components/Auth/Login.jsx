@@ -30,7 +30,6 @@ const Login = () => {
     dispatch(isLoading());
     loginUser(loginCreds)
       .then((res) => {
-        console.log("response login: ", res);
         setloginCreds({
           username: "",
           password: "",

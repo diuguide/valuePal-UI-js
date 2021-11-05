@@ -4,9 +4,8 @@ import { tickerData } from "../../utilities/stockData";
 export const yahooTickerSearch = createAsyncThunk(
   "fetchTicker",
   async (ticker) => {
-    console.log("ticker inside slice:", ticker);
     const response = await tickerData(ticker);
-    return response;
+    return { response, ticker };
   }
 );
 
@@ -15,6 +14,7 @@ const initialState = {
   showData: false,
   dataLoading: false,
   dataLoaded: false,
+  ticker: ""
 };
 
 export const tickerDataSlice = createSlice({
@@ -37,7 +37,8 @@ export const tickerDataSlice = createSlice({
         state.dataLoaded = false;
       })
       .addCase(yahooTickerSearch.fulfilled, (state, action) => {
-        state.data = action.payload.data;
+        state.data = action.payload.response.data;
+        state.ticker = action.payload.ticker;
         state.dataLoading = false;
         state.dataLoaded = true;
       });

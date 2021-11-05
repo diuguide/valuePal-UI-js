@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { dataState } from "../../slice/data/dataSlice";
 
 const Summary = ({ ticker }) => {
-  console.log("Stock ticker: ", ticker);
   const chartData = useSelector(dataState);
 
   const [chartObj, setChartObj] = useState({
@@ -17,13 +16,11 @@ const Summary = ({ ticker }) => {
   });
 
   useEffect(() => {
-    console.log("useEffect Fired: ", ticker);
     filterData(ticker);
   }, [ticker]);
 
   const filterData = (target) => {
     let filtered = chartData.data.filter((el) => el.exchange == target);
-    console.log("filtered: ", filtered[0]);
     setChartObj(filtered[0]);
   };
   const chartState = {

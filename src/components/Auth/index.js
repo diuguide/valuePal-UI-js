@@ -32,7 +32,6 @@ const Register = () => {
           lastName: "",
           email: "",
         });
-        console.log("response on front end: ", res);
       })
       .catch((err) => {
         dispatch(showMessage(err.response.data));

@@ -5,11 +5,12 @@ import {
   tickerDataState,
   yahooTickerSearch,
 } from "../../slice/data/tickerSearchSlice";
+import { yahooTickerHistory } from "../../slice/data/tickerHistorySlice";
 
 const TickerSearch = () => {
   const dispatch = useDispatch();
   const tickerState = useSelector(tickerDataState);
-  console.log("inside Ticker SEarch: ", tickerState);
+
   const [ticker, setTicker] = useState("");
 
   const handleChange = (e) => {
@@ -20,6 +21,9 @@ const TickerSearch = () => {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(yahooTickerSearch(ticker));
+    dispatch(
+      yahooTickerHistory({ api: 1, interval: "1m", range: "1d", ticker })
+    );
     setTicker("");
   };
   return (

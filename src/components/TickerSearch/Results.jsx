@@ -4,7 +4,7 @@ import { tickerDataState } from "../../slice/data/tickerSearchSlice";
 import { timeConverterFull } from "../../utilities/stockData";
 const TickerResults = () => {
   const tickerData = useSelector(tickerDataState);
-  console.log("inside results: ", tickerData);
+  
 
   const quoteStyle = {
     longName: {

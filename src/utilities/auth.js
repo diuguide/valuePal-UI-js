@@ -18,6 +18,6 @@ export const registerUser = async (user) => {
 };
 
 export const loginUser = async (user) => {
-  let response = await authClient.post("/users/login", user);
+  let response = await authClient.post("/login", user);
   return response;
 };
