@@ -13,8 +13,9 @@ const Register = () => {
     username: "",
     password: "",
     firstName: "",
-    lastName: "",
     email: "",
+    role:"ROLE_USER",
+    watchlist: "AMC,GME,AAPL"
   });
 
   const handleChange = (e) => {
@@ -29,8 +30,9 @@ const Register = () => {
           username: "",
           password: "",
           firstName: "",
-          lastName: "",
           email: "",
+          role:"ROLE_USER",
+          watchlist: "AMC,GME,AAPL"
         });
       })
       .catch((err) => {
@@ -52,15 +54,6 @@ const Register = () => {
               value={registerCreds.firstName}
               onChange={handleChange}
               placeholder="First Name"
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group className="m-2">
-            <Form.Control
-              type="text"
-              name="lastName"
-              value={registerCreds.lastName}
-              onChange={handleChange}
-              placeholder="Last Name"
             ></Form.Control>
           </Form.Group>
           <Form.Group className="m-2">
