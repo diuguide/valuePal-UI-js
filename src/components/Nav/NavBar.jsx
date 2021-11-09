@@ -15,6 +15,7 @@ const NavBar = () => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem("authorization");
     dispatch(logout());
   };
 

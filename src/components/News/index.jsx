@@ -38,7 +38,7 @@ const NewsFeed = () => {
                   return (
                     <tr key={index}>
                        <td style={styleLink}>{el.content.title}{el.content.clickThroughUrl && <div><a target="_blank" href={el.content.clickThroughUrl.url}>Read more...</a></div>}</td>
-                       <td><img width="70" src={el.content.thumbnail.resolutions[1].url} alt="thumbnail image"></img></td>
+                       <td><img width="70" src={el.content.thumbnail.resolutions[1].url && el.content.thumbnail.resolutions[1].url} alt="thumbnail image"></img></td>
                      </tr>
                   );
                 }
