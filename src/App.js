@@ -5,8 +5,17 @@ import Welcome from "./components/Main/Welcome";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./scss/App.scss";
 import NavBar from "./components/Nav/NavBar";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { isLoaded } from "./slice/auth/authSlice";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if(localStorage.getItem('authorization')) {
+      dispatch(isLoaded(localStorage.getItem("authorization")));
+    }
+  });
   return (
     <Router>
       <NavBar />

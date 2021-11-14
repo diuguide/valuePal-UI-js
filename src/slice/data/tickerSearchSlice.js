@@ -14,7 +14,7 @@ const initialState = {
   showData: false,
   dataLoading: false,
   dataLoaded: false,
-  ticker: ""
+  ticker: "",
 };
 
 export const tickerDataSlice = createSlice({

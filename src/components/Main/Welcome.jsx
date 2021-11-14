@@ -1,15 +1,13 @@
 import { Row, Col, Container } from "react-bootstrap";
-import Login from "../Auth/Login";
-import Loader from "../Loader/Loader";
 import { useSelector } from "react-redux";
 import { authState } from "../../slice/auth/authSlice";
 import TwitterFeed from "../Twitter";
-import NewsFeed from "../News";
 import TickerSearch from "../TickerSearch";
 import TickerResults from "../TickerSearch/Results";
 import { tickerDataState } from "../../slice/data/tickerSearchSlice";
 import { tickerHistoryState } from "../../slice/data/tickerHistorySlice";
 import HistChartWrapper from "../Charts/TickerHistory/Wrapper";
+import HoldingsTable from "../Wallet/HoldingsTable";
 
 const Welcome = () => {
   const auth = useSelector(authState);
@@ -27,11 +25,14 @@ const Welcome = () => {
           <HistChartWrapper />
         </Col>
       </Row>
+      {auth.isAuthenticated &&
       <Row>
         <Col>
-          <NewsFeed />
+        <HoldingsTable />
         </Col>
       </Row>
+      }
+      
       <Row className="d-flex justify-content-center">
         {twitterHandle.map((tw, index) => {
           return (

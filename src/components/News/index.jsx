@@ -36,11 +36,10 @@ const NewsFeed = () => {
               {newsData.data.data.main.stream.map((el, index) => {
                 
                 if (el.content.thumbnail) {
-                  console.log(index)
                   return (
                     <tr key={index}>
-                       <td style={styleLink}>{el.content.title}{el.content.clickThroughUrl && <div><a target="_blank" href={el.content.clickThroughUrl.url}>Read more...</a></div>}</td>
-                       <td></td>
+                       {/* <td style={styleLink}>{el.content.title}{el.content.clickThroughUrl && <div><a target="_blank" href={el.content.clickThroughUrl.url}>Read more...</a></div>}</td>
+                       <td></td> */}
                      </tr>
                   );
                 }

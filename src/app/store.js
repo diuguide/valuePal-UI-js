@@ -5,6 +5,7 @@ import dataReducer from "../slice/data/dataSlice";
 import newsDataReducer from "../slice/data/newsDataSlice";
 import tickerDataReducer from "../slice/data/tickerSearchSlice";
 import tickerHistoryReducer from "../slice/data/tickerHistorySlice";
+import walletReducer from "../slice/wallet/walletSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ export const store = configureStore({
     data: dataReducer,
     newsData: newsDataReducer,
     ticker: tickerDataReducer,
-    tickerHist: tickerHistoryReducer
+    tickerHist: tickerHistoryReducer,
+    wallet: walletReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
