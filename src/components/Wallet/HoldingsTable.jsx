@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { retrieveWal, walletState } from "../../slice/wallet/walletSlice";
 import { authState } from "../../slice/auth/authSlice";
+import { updateHoldingsTable } from "../../utilities/wallet";
 
 const HoldingsTable = () => {
   const walletData = useSelector(walletState);
@@ -13,18 +14,23 @@ const HoldingsTable = () => {
     dispatch(retrieveWal(auth.token));
   }, []);
 
+  const updateHoldingsTableButton = () => {
+    updateHoldingsTable();
+  }
+
   console.log("Wallet Data: ", walletData);
   return (
     <>
       {walletData.isLoaded && (
+        <>
         <Row>
           <Col>
             <Table striped bordered hover>
               <thead>
                 <th>Ticker</th>
                 <th>Quantity</th>
-                <th>Purchase Price</th>
                 <th>Current Price</th>
+                <th>Change</th>
                 <th>Total Value</th>
               </thead>
               <tbody>
@@ -34,7 +40,7 @@ const HoldingsTable = () => {
                       <td>{ticker.ticker}</td>
                       <td>{ticker.quantity}</td>
                       <td>{ticker.price}</td>
-                      <td></td>
+                      <td>{ticker.change && ticker.change}</td>
                       <td>{ticker.totalValue}</td>
                     </tr>
                   );
@@ -43,6 +49,12 @@ const HoldingsTable = () => {
             </Table>
           </Col>
         </Row>
+        <Row>
+          <Col>
+          <button onClick={updateHoldingsTableButton}>Update</button>
+          </Col>
+        </Row>
+        </>
       )}
     </>
   );

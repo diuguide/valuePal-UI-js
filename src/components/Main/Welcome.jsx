@@ -33,7 +33,7 @@ const Welcome = () => {
       </Row>
       }
       
-      <Row className="d-flex justify-content-center">
+      {/* <Row className="d-flex justify-content-center">
         {twitterHandle.map((tw, index) => {
           return (
             <Col key={index}>
@@ -41,7 +41,7 @@ const Welcome = () => {
             </Col>
           );
         })}
-      </Row>
+      </Row> */}
     </Container>
   );
 };
