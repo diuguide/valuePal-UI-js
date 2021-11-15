@@ -9,9 +9,7 @@ import {
 import { isLoading, isLoaded } from "../../slice/auth/authSlice";
 import { useState } from "react";
 
-
 const Login = () => {
-  
   const error = useSelector(errorState);
   const dispatch = useDispatch();
 
@@ -36,11 +34,13 @@ const Login = () => {
         });
         if (res.status === 200) {
           localStorage.setItem("authorization", res.headers.authorization);
+          console.log("Response login: ", res);
           dispatch(isLoaded(res.headers.authorization));
         }
       })
       .catch((err) => {
-        dispatch(showMessage(err.response.data));
+        console.log(err.response);
+        dispatch(showMessage(err.response.data.error));
         setTimeout(() => {
           dispatch(hideMessage());
         }, 5000);
@@ -54,7 +54,7 @@ const Login = () => {
       margin: "5px",
       fontSize: "10px",
       borderRadius: "10px",
-      paddingLeft: "10px"
+      paddingLeft: "10px",
     },
     button: {
       fontSize: "10px",
