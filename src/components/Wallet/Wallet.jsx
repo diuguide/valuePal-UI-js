@@ -11,30 +11,36 @@ const Wallet = () => {
       padding: "10px",
     },
     font: {
-      fontSize: "20px",
       color: "white",
     },
     value: {
+      marginLeft: "5px",
+      padding: "0px 6px",
       border: "1px solid black",
+      borderRadius: "5px",
       backgroundColor: "white",
     },
   };
 
+  let sum = walletData.wallet.totalValue + walletData.wallet.totalCash;
+
   return (
-    <Row style={styling.container} className="bg-dark">
+    <Row style={styling.container} className="bg-dark mt-2">
       <Col className="d-flex">
-        <div style={styling.font}>Balance: </div>
-        <div style={styling.value}>{walletData.wallet.totalCash}</div>
+        <div style={styling.font}>Cash: </div>
+        <div style={styling.value}>
+          {walletData.wallet.totalCash?.toFixed(2)}
+        </div>
       </Col>
       <Col className="d-flex">
         <div style={styling.font}>Assets: </div>
-        <div style={styling.value}>{walletData.wallet.totalValue}</div>
+        <div style={styling.value}>
+          {walletData.wallet.totalValue?.toFixed(2)}
+        </div>
       </Col>
       <Col className="d-flex">
-        <div style={styling.font}>Total Value: </div>
-        <div style={styling.value}>
-          {walletData.wallet.totalValue + walletData.wallet.totalCash || null} 
-        </div>
+        <div style={styling.font}>Value: </div>
+        <div style={styling.value}>{sum.toFixed(2) || null}</div>
       </Col>
     </Row>
   );

@@ -2,8 +2,7 @@ import { Row, Col } from "react-bootstrap";
 import Chart from "react-apexcharts";
 import { timeConvertArray } from "../../../utilities/stockData";
 
-const History = ({data}) => {
-  
+const History = ({ data }) => {
   const chartState = {
     options: {
       dataLabels: {
@@ -19,14 +18,14 @@ const History = ({data}) => {
         axisBorder: {
           show: false,
         },
-        categories: timeConvertArray(data.timestamp),
+        categories: data.timeStamp ? timeConvertArray(data.timestamp) : null,
         labels: {
           show: false,
         },
       },
       yaxis: {
-        min: Math.min(...data.close),
-        max: Math.max(...data.close),
+        min: data.close ? Math.min(...data.close) : null,
+        max: data.close ? Math.max(...data.close): null,
         opposite: true,
         tickAmount: 5,
       },
@@ -42,21 +41,23 @@ const History = ({data}) => {
     series: [
       {
         name: "USD",
-        data: data.close,
+        data: data.close ? data.close : null,
       },
     ],
   };
 
   return (
     <Row>
-      <Col>
-        <Chart
-          options={chartState.options}
-          series={chartState.series}
-          type="line"
-          width="500"
-        />
-      </Col>
+      {data.timestamp.length > 0 && (
+        <Col>
+          <Chart
+            options={chartState.options}
+            series={chartState.series}
+            type="line"
+            width="500"
+          />
+        </Col>
+      )}
     </Row>
   );
 };

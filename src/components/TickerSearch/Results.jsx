@@ -64,7 +64,7 @@ const TickerResults = () => {
         <div className="d-flex">
           <div style={quoteStyle.currentPrice}>
             $
-            {tickerData.data.quoteResponse.result[0].regularMarketPrice.toFixed(
+            {tickerData.data.quoteResponse.result[0].regularMarketPrice?.toFixed(
               2
             )}
           </div>
@@ -77,12 +77,12 @@ const TickerResults = () => {
           </div>
           <div style={quoteStyle.marketChange}>
             <div style={quoteStyle.marketChange.value}>
-              {tickerData.data.quoteResponse.result[0].regularMarketChange.toFixed(
+              {tickerData.data.quoteResponse.result[0].regularMarketChange?.toFixed(
                 2
               )}
             </div>
             <div style={quoteStyle.marketChange.percentage}>
-              {tickerData.data.quoteResponse.result[0].regularMarketChangePercent.toFixed(
+              {tickerData.data.quoteResponse.result[0].regularMarketChangePercent?.toFixed(
                 2
               )}
               %

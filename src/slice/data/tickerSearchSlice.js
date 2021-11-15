@@ -5,7 +5,11 @@ export const yahooTickerSearch = createAsyncThunk(
   "fetchTicker",
   async (ticker) => {
     const response = await tickerData(ticker);
-    return { response, ticker };
+    if (response.data.quoteResponse.result[0].quoteType == "EQUITY") {
+      return { response, ticker };
+    } else {
+      return null;
+    }
   }
 );
 
@@ -15,6 +19,8 @@ const initialState = {
   dataLoading: false,
   dataLoaded: false,
   ticker: "",
+  errorMsg: "",
+  showError: false
 };
 
 export const tickerDataSlice = createSlice({
@@ -33,14 +39,21 @@ export const tickerDataSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(yahooTickerSearch.pending, (state) => {
+        state.showError = false;
+        state.errorMsg = "";
         state.dataLoading = true;
         state.dataLoaded = false;
       })
       .addCase(yahooTickerSearch.fulfilled, (state, action) => {
-        state.data = action.payload.response.data;
-        state.ticker = action.payload.ticker;
-        state.dataLoading = false;
-        state.dataLoaded = true;
+        if (action.payload) {
+          state.data = action.payload.response.data;
+          state.ticker = action.payload.ticker;
+          state.dataLoading = false;
+          state.dataLoaded = true;
+        } else {
+          state.errorMsg = "Not a valid Ticker!";
+          state.showError = true;
+        }
       });
   },
 });

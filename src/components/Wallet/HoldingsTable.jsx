@@ -41,9 +41,9 @@ const HoldingsTable = () => {
                       <tr key={index}>
                         <td>{ticker.ticker}</td>
                         <td>{ticker.quantity}</td>
-                        <td>{ticker.price}</td>
-                        <td>{ticker.change && ticker.change}</td>
-                        <td>{ticker.totalValue}</td>
+                        <td>{ticker.price.toFixed(2)}</td>
+                        <td>{ticker.change && ticker.change.toFixed(2)}</td>
+                        <td>{ticker.totalValue.toFixed(2)}</td>
                       </tr>
                     );
                   })}

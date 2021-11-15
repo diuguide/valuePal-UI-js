@@ -18,7 +18,7 @@ const Welcome = () => {
   // const twitterHandle = ["DowJones", "Nasdaq", "CMEGroup"];
   return (
     <Container>
-      <Row>
+      <Row className="bg-light">
         <Col className="p-4" lg={6}>
           <TickerSearch />
           {tickerData.dataLoaded && <TickerResults />}
@@ -31,7 +31,7 @@ const Welcome = () => {
         </Col>
       </Row>
       {auth.isAuthenticated &&
-      <Row>
+      <Row className="bg-light">
         <Col>
         <HoldingsTable />
         </Col>

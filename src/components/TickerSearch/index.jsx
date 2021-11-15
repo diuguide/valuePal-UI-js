@@ -1,15 +1,21 @@
 import { useState } from "react";
-import { Row, Col, Form, Button } from "react-bootstrap";
+import { Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
   tickerDataState,
   yahooTickerSearch,
 } from "../../slice/data/tickerSearchSlice";
 import { yahooTickerHistory } from "../../slice/data/tickerHistorySlice";
+import {
+  errorState,
+  showMessage,
+  hideMessage,
+} from "../../slice/error/errorSlice";
 
 const TickerSearch = () => {
   const dispatch = useDispatch();
   const tickerState = useSelector(tickerDataState);
+  const error = useSelector(errorState);
 
   const [ticker, setTicker] = useState("");
 
@@ -18,29 +24,55 @@ const TickerSearch = () => {
     setTicker(value);
   };
 
+  const regex = /^[A-Z]+$/;
+
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(yahooTickerSearch(ticker));
-    dispatch(
-      yahooTickerHistory({ api: 1, interval: "1m", range: "1d", ticker })
-    );
-    setTicker("");
+    if (regex.test(ticker)) {
+      dispatch(yahooTickerSearch(ticker));
+      dispatch(
+        yahooTickerHistory({ api: 1, interval: "1m", range: "1d", ticker })
+      );
+      setTicker("");
+    } else {
+      setTicker("");
+      dispatch(
+        showMessage(
+          "Must be all UPPERCASE, no numbers, or special characters!"
+        )
+      );
+      setTimeout(() => {
+        dispatch(hideMessage());
+      }, 5000);
+    }
   };
   return (
-    <Row>
-      <Col>
-        <Form className="d-flex">
-          <Form.Control
-            type="text"
-            name="ticker"
-            value={ticker}
-            onChange={handleChange}
-            placeholder="Search for stock"
-          />
-          <Button onClick={handleClick}>Search</Button>
-        </Form>
-      </Col>
-    </Row>
+    <>
+      <Row>
+        <Col>
+          <Form className="d-flex">
+            <Form.Control
+              type="text"
+              name="ticker"
+              value={ticker}
+              onChange={handleChange}
+              placeholder="Search for stock"
+            />
+            <Button onClick={handleClick}>Search</Button>
+          </Form>
+        </Col>
+      </Row>
+      {error.showMsg && (
+        <Row>
+          <Alert>{error.msg}</Alert>
+        </Row>
+      )}
+      {tickerState.showError && (
+        <Row>
+          <Alert>{tickerState.errorMsg}</Alert>
+        </Row>
+      )}
+    </>
   );
 };
 
