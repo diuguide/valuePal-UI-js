@@ -1,4 +1,4 @@
-import { Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { Row, Col, Form, Alert } from "react-bootstrap";
 import { loginUser } from "../../utilities/auth";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,10 +8,10 @@ import {
 } from "../../slice/error/errorSlice";
 import { isLoading, isLoaded } from "../../slice/auth/authSlice";
 import { useState } from "react";
-import { useHistory } from "react-router";
+
 
 const Login = () => {
-  const history = useHistory();
+  
   const error = useSelector(errorState);
   const dispatch = useDispatch();
 

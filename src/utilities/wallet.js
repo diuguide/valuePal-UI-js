@@ -32,4 +32,16 @@ export const updateHoldingsTable = async () => {
     }
     let response = await authClient.post("/stock/saveWallet", holdingsArray);
     console.log("holdings: ", response);
+    return response;
 }
+
+export const purchaseOrder = async (token, order) => {
+    let headers = {
+        'Authorization':token
+    }
+    console.log("order inside route", order);
+    console.log("token inside order", token);
+    let response = await authClient.post("/stock/addStock", order, {headers});
+    console.log("Response stock/addStock", response.data);
+    return response.data;
+} 

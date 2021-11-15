@@ -8,18 +8,23 @@ import { tickerDataState } from "../../slice/data/tickerSearchSlice";
 import { tickerHistoryState } from "../../slice/data/tickerHistorySlice";
 import HistChartWrapper from "../Charts/TickerHistory/Wrapper";
 import HoldingsTable from "../Wallet/HoldingsTable";
+import PurchasePanel from "../Wallet/PurchasePanel";
+import Wallet from "../Wallet/Wallet";
 
 const Welcome = () => {
   const auth = useSelector(authState);
   const tickerData = useSelector(tickerDataState);
-  const tickerHistory = useSelector(tickerHistoryState);
-  const twitterHandle = ["DowJones", "Nasdaq", "CMEGroup"];
+  // const tickerHistory = useSelector(tickerHistoryState);
+  // const twitterHandle = ["DowJones", "Nasdaq", "CMEGroup"];
   return (
     <Container>
       <Row>
         <Col className="p-4" lg={6}>
           <TickerSearch />
           {tickerData.dataLoaded && <TickerResults />}
+          {auth.isAuthenticated && tickerData.dataLoaded && <PurchasePanel />}
+          <Wallet></Wallet>
+          
         </Col>
         <Col className="pt-4" lg={6}>
           <HistChartWrapper />
