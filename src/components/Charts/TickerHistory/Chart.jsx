@@ -18,7 +18,7 @@ const History = ({ data }) => {
         axisBorder: {
           show: false,
         },
-        categories: data.timeStamp ? timeConvertArray(data.timestamp) : null,
+        categories: data.timestamp.length > 0 ? timeConvertArray(data.timestamp) : null,
         labels: {
           show: false,
         },
@@ -48,7 +48,7 @@ const History = ({ data }) => {
 
   return (
     <Row>
-      {data.timestamp.length > 0 && (
+      {data.timestamp.length > 0 && data.close.length > 0 && (
         <Col>
           <Chart
             options={chartState.options}

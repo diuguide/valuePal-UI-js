@@ -11,7 +11,7 @@ export const newsData = async () => {
 };
 
 export const tickerData = async (ticker) => {
-  let response = await authClient.post(`/calls/ticker?ticker=${ticker}`);
+  let response = await authClient.post(`/calls/getQuoteYH?ticker=${ticker}`);
 
   return response;
 };

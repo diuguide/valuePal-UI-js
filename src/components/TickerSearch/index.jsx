@@ -31,7 +31,7 @@ const TickerSearch = () => {
     if (regex.test(ticker)) {
       dispatch(yahooTickerSearch(ticker));
       dispatch(
-        yahooTickerHistory({ api: 1, interval: "1m", range: "1d", ticker })
+        yahooTickerHistory({ api: 2, interval: "1m", range: "1d", ticker })
       );
       setTicker("");
     } else {

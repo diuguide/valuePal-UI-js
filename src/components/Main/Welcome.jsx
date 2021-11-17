@@ -23,21 +23,20 @@ const Welcome = () => {
           <TickerSearch />
           {tickerData.dataLoaded && <TickerResults />}
           {auth.isAuthenticated && tickerData.dataLoaded && <PurchasePanel />}
-          <Wallet></Wallet>
-          
+          {auth.isAuthenticated && <Wallet></Wallet>}
         </Col>
         <Col className="pt-4" lg={6}>
           <HistChartWrapper />
         </Col>
       </Row>
-      {auth.isAuthenticated &&
-      <Row className="bg-light">
-        <Col>
-        <HoldingsTable />
-        </Col>
-      </Row>
-      }
-      
+      {auth.isAuthenticated && (
+        <Row className="bg-light">
+          <Col>
+            <HoldingsTable />
+          </Col>
+        </Row>
+      )}
+
       {/* <Row className="d-flex justify-content-center">
         {twitterHandle.map((tw, index) => {
           return (
