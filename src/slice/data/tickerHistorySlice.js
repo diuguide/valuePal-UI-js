@@ -15,11 +15,13 @@ export const yahooTickerHistory = createAsyncThunk(
 );
 
 const initialState = {
-  data: [],
+  data: null,
   showData: false,
   dataLoading: false,
   dataLoaded: false,
   ticker: "",
+  errorMsg: "",
+  showError: false
 };
 
 export const tickerHistorySlice = createSlice({
@@ -40,15 +42,20 @@ export const tickerHistorySlice = createSlice({
       .addCase(yahooTickerHistory.pending, (state) => {
         state.dataLoading = true;
         state.dataLoaded = false;
+        state.showError = false;
+        state.errorMsg = "";
       })
       .addCase(yahooTickerHistory.fulfilled, (state, action) => {
-        let temp = action.payload.ticker.ticker;
-        console.log("TEMP: ", temp);
-        console.log("Action.payload: ", action.payload.response.data[temp]);
-        state.data = action.payload.response.data[temp];
-        state.ticker = temp;
-        state.dataLoading = false;
-        state.dataLoaded = true;
+        if (!action.payload.response.data.quoteResponse) {
+          let temp = action.payload.ticker.ticker;
+          state.data = action.payload.response.data[temp];
+          state.ticker = temp;
+          state.dataLoading = false;
+          state.dataLoaded = true;
+        } else {
+          state.errorMsg = "Something went wrong!";
+          state.showError = true;
+        }
       });
   },
 });

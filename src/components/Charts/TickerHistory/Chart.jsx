@@ -3,6 +3,7 @@ import Chart from "react-apexcharts";
 import { timeConvertArray } from "../../../utilities/stockData";
 
 const History = ({ data }) => {
+  console.log("Chart Data: ", data);
   const chartState = {
     options: {
       dataLabels: {
@@ -18,14 +19,14 @@ const History = ({ data }) => {
         axisBorder: {
           show: false,
         },
-        categories: data.timestamp.length > 0 ? timeConvertArray(data.timestamp) : null,
+        categories: data ? timeConvertArray(data.timestamp) : null,
         labels: {
           show: false,
         },
       },
       yaxis: {
-        min: data.close ? Math.min(...data.close) : null,
-        max: data.close ? Math.max(...data.close): null,
+        min: data ? Math.min(...data.close) : null,
+        max: data ? Math.max(...data.close) : null,
         opposite: true,
         tickAmount: 5,
       },
@@ -41,23 +42,21 @@ const History = ({ data }) => {
     series: [
       {
         name: "USD",
-        data: data.close ? data.close : null,
+        data: data ? data.close : null,
       },
     ],
   };
 
   return (
     <Row>
-      {data.timestamp.length > 0 && data.close.length > 0 && (
-        <Col>
-          <Chart
-            options={chartState.options}
-            series={chartState.series}
-            type="line"
-            width="500"
-          />
-        </Col>
-      )}
+      <Col>
+        <Chart
+          options={chartState.options}
+          series={chartState.series}
+          type="line"
+          width="500"
+        />
+      </Col>
     </Row>
   );
 };
