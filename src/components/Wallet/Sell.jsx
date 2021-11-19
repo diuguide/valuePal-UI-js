@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { tickerDataState } from "../../slice/data/tickerSearchSlice";
 
 const SellPanel = () => {
+  const tickerData = useSelector(tickerDataState);
   const [sellOrder, setSellOrder] = useState({
+    ticker: tickerData.ticker || "",
     quantity: 0,
-    ticker: "",
-    price: 0,
+    price: tickerData.data.quoteResponse.result[0].regularMarketPrice || 0,
   });
 
   let total = sellOrder.quantity * sellOrder.price || null;
@@ -17,6 +20,11 @@ const SellPanel = () => {
 
   const handleClick = () => {
     console.log("Sell Order: ", sellOrder);
+    setSellOrder({
+      ticker: tickerData.ticker || "",
+      quantity: 0,
+      price: tickerData.data.quoteResponse.result[0].regularMarketPrice || 0,
+    });
   };
 
   const styling = {
@@ -58,7 +66,9 @@ const SellPanel = () => {
             ></Form.Control>
           </Form.Group>
         </Form>
-        <div style={styling.cost}></div>
+        <div style={styling.cost}>
+          {order.quantity == 0 ? 0 : "$" + cost.toFixed(2)}
+        </div>
       </Col>
       <Col>
         <Button onClick={handleClick}>Sell</Button>
