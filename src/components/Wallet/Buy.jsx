@@ -10,7 +10,7 @@ import {
   updateHoldingsTableFunc,
 } from "../../slice/wallet/walletSlice";
 
-const PurchasePanel = () => {
+const BuyPanel = () => {
   const tickerData = useSelector(tickerDataState);
   const auth = useSelector(authState);
   const dispatch = useDispatch();
@@ -59,16 +59,18 @@ const PurchasePanel = () => {
       backgroundColor: "white",
       border: "1px grooved #ced4da",
       borderRadius: "3px",
-      padding: ".065rem .75rem"
+      padding: ".065rem .75rem",
     },
   };
 
   return (
     <Row style={styling.container} className="bg-secondary mt-2">
-      <Col className="d-flex">
+      <Col>
         <Button style={styling.button} onClick={handleSubmit}>
           Buy
         </Button>
+      </Col>
+      <Col>
         <Form className="d-flex">
           <Form.Group>
             <Form.Control
@@ -89,4 +91,4 @@ const PurchasePanel = () => {
   );
 };
 
-export default PurchasePanel;
+export default BuyPanel;

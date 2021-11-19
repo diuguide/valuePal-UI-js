@@ -8,8 +8,8 @@ import { tickerDataState } from "../../slice/data/tickerSearchSlice";
 import { tickerHistoryState } from "../../slice/data/tickerHistorySlice";
 import HistChartWrapper from "../Charts/TickerHistory/Wrapper";
 import HoldingsTable from "../Wallet/HoldingsTable";
-import PurchasePanel from "../Wallet/PurchasePanel";
 import Wallet from "../Wallet/Wallet";
+import PurchasePanelWrapper from "../Wallet/PurchasePanelWrapper";
 
 const Welcome = () => {
   const auth = useSelector(authState);
@@ -22,7 +22,7 @@ const Welcome = () => {
         <Col className="p-4" lg={6}>
           <TickerSearch />
           {tickerData.dataLoaded && <TickerResults />}
-          {auth.isAuthenticated && tickerData.dataLoaded && <PurchasePanel />}
+          {auth.isAuthenticated && tickerData.dataLoaded && <PurchasePanelWrapper />}
           {auth.isAuthenticated && <Wallet></Wallet>}
         </Col>
         <Col className="pt-4" lg={6}>
