@@ -12,7 +12,7 @@ export const newsData = async () => {
 
 export const tickerData = async (ticker) => {
   let response = await authClient.post(`/calls/getQuoteYH?ticker=${ticker}`);
-
+  console.log("Ticker search response: ", response);
   return response;
 };
 
