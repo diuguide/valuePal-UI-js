@@ -67,7 +67,7 @@ const SellPanel = () => {
           </Form.Group>
         </Form>
         <div style={styling.cost}>
-          {order.quantity == 0 ? 0 : "$" + cost.toFixed(2)}
+          {sellOrder.quantity == 0 ? 0 : "$" + total.toFixed(2)}
         </div>
       </Col>
       <Col>
