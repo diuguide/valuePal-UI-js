@@ -39,9 +39,19 @@ export const purchaseOrder = async (token, order) => {
     let headers = {
         'Authorization':token
     }
-    console.log("order inside route", order);
-    console.log("token inside order", token);
+    
     let response = await authClient.post("/stock/addStock", order, {headers});
-    console.log("Response stock/addStock", response.data);
+    
     return response.data;
-} 
+}
+
+export const sellHoldingOrder = async (token, order) => {
+
+    let headers = {
+        'Authorization': token
+    }
+
+    let response = await authClient.post("/stock/sellStock", order, {headers});
+    
+    return response.data;
+}

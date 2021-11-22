@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { tickerDataState } from "../../slice/data/tickerSearchSlice";
+import { sellHoldingOrder } from "../../utilities/wallet";
 
 const SellPanel = () => {
   const tickerData = useSelector(tickerDataState);
@@ -20,6 +21,7 @@ const SellPanel = () => {
 
   const handleClick = () => {
     console.log("Sell Order: ", sellOrder);
+    sellHoldingOrder(localStorage.getItem('authorization'), sellOrder);
     setSellOrder({
       ticker: tickerData.ticker || "",
       quantity: 0,
