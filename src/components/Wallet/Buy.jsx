@@ -8,6 +8,7 @@ import { authState } from "../../slice/auth/authSlice";
 import {
   retrieveWal,
   updateHoldingsTableFunc,
+  buyStockOrder
 } from "../../slice/wallet/walletSlice";
 
 const BuyPanel = () => {
@@ -29,19 +30,18 @@ const BuyPanel = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    purchaseOrder(localStorage.getItem("authorization"), order);
+    dispatch(buyStockOrder({token: localStorage.getItem("authorization"), buyOrder: order}))
     setOrder({
       ticker: tickerData.ticker || "",
       quantity: 0,
       price: tickerData.data.quoteResponse.result[0].regularMarketPrice || 0,
     });
-    dispatch(updateHoldingsTableFunc());
-    dispatch(retrieveWal(auth.token));
+    // dispatch(updateHoldingsTableFunc());
+    // dispatch(retrieveWal(auth.token));
   };
 
   const styling = {
     container: {
-      borderRadius: "10px",
       padding: "10px",
     },
     button: {

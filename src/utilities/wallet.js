@@ -40,9 +40,15 @@ export const purchaseOrder = async (token, order) => {
     Authorization: token,
   };
 
-  let response = await authClient.post("/stock/addStock", order, { headers });
+  try {
+    let response = await authClient.post("/stock/addStock", order, { headers });
 
-  return response.data;
+    return response.data;
+  } catch (err) {
+    return err.response;
+  }
+
+  
 };
 
 export const sellHoldingOrder = async (token, order) => {

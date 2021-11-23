@@ -34,7 +34,6 @@ const SellPanel = () => {
 
   const styling = {
     container: {
-      borderRadius: "10px",
       padding: "10px",
     },
     button: {

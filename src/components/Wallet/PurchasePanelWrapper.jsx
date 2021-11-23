@@ -8,10 +8,16 @@ import SellPanel from "./Sell";
 const PurchasePanelWrapper = () => {
   const walletData = useSelector(walletState);
   const dispatch = useDispatch();
+
+  const styling = {
+    container: {
+      borderRadius: "10px"
+    }
+  }
   
   return (
     <>
-      <Row>
+      <Row style={styling.container} className="bg-secondary mt-2">
         <Col>
           <BuyPanel />
         </Col>
