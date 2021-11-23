@@ -6,7 +6,6 @@ import {
   updateHoldingsTable,
 } from "../../utilities/wallet";
 
-
 export const retrieveWal = createAsyncThunk("fetchWallet", async (token) => {
   const response = await retrieveWallet(token);
   return response;
@@ -28,14 +27,11 @@ export const buyStockOrder = createAsyncThunk(
   }
 );
 
-export const sellStockOrder = createAsyncThunk(
-  "sellStock",
-  async (order) => {
-    const response = await sellHoldingOrder(order.token, order.sellOrder);
-    console.log("Sell STOCK RESPONSE IN SLICE: ", response);
-    return response;
-  }
-);
+export const sellStockOrder = createAsyncThunk("sellStock", async (order) => {
+  const response = await sellHoldingOrder(order.token, order.sellOrder);
+  console.log("Sell STOCK RESPONSE IN SLICE: ", response);
+  return response;
+});
 
 const initialState = {
   wallet: {},
@@ -63,6 +59,10 @@ export const walletSlice = createSlice({
       state.isLoading = false;
       state.isLoaded = true;
     },
+    hideErrors: (state) => {
+      state.purchasePanel.msg.message = "";
+      state.purchasePanel.msg.showMsg = false;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -88,23 +88,21 @@ export const walletSlice = createSlice({
         state.purchasePanel.isLoaded = false;
       })
       .addCase(sellStockOrder.fulfilled, (state, action) => {
-        if(action.payload.status === 200) {
-          console.log("Success walletSlice");
+        if (action.payload.status === 200) {
           state.purchasePanel.isLoading = false;
-        state.purchasePanel.isLoaded = true;
-        state.purchasePanel.msg.message = "Transaction Complete!";
-        state.purchasePanel.msg.showMsg = true;
+          state.purchasePanel.isLoaded = true;
+          state.purchasePanel.msg.message = "Transaction Complete!";
+          state.purchasePanel.msg.showMsg = true;
         } else if (action.payload.status === 400) {
           state.purchasePanel.isLoading = false;
-        state.purchasePanel.isLoaded = true;
-        state.purchasePanel.msg.message = action.payload.data;
-        state.purchasePanel.msg.showMsg = true;
+          state.purchasePanel.isLoaded = true;
+          state.purchasePanel.msg.message = action.payload.data;
+          state.purchasePanel.msg.showMsg = true;
         }
-        
-      })
+      });
   },
 });
 
-export const { isLoading, isLoaded } = walletSlice.actions;
+export const { isLoading, isLoaded, hideErrors } = walletSlice.actions;
 export const walletState = (state) => state.wallet;
 export default walletSlice.reducer;
