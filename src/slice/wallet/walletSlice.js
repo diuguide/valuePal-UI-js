@@ -1,5 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { retrieveWallet, updateHoldingsTable } from "../../utilities/wallet";
+import {
+  purchaseOrder,
+  retrieveWallet,
+  sellHoldingOrder,
+  updateHoldingsTable,
+} from "../../utilities/wallet";
+
 
 export const retrieveWal = createAsyncThunk("fetchWallet", async (token) => {
   const response = await retrieveWallet(token);
@@ -14,10 +20,35 @@ export const updateHoldingsTableFunc = createAsyncThunk(
   }
 );
 
+export const buyStockOrder = createAsyncThunk(
+  "buyStock",
+  async (token, order) => {
+    const response = await purchaseOrder(token, order);
+    return response;
+  }
+);
+
+export const sellStockOrder = createAsyncThunk(
+  "sellStock",
+  async (order) => {
+    const response = await sellHoldingOrder(order.token, order.sellOrder);
+    console.log("Sell STOCK RESPONSE IN SLICE: ", response);
+    return response;
+  }
+);
+
 const initialState = {
   wallet: {},
   isLoading: false,
   isLoaded: false,
+  purchasePanel: {
+    isLoading: false,
+    isLoaded: false,
+    msg: {
+      message: "",
+      showMsg: false,
+    },
+  },
 };
 
 export const walletSlice = createSlice({
@@ -51,7 +82,26 @@ export const walletSlice = createSlice({
       .addCase(updateHoldingsTableFunc.fulfilled, (state) => {
         state.isLoading = false;
         state.isLoaded = true;
-      });
+      })
+      .addCase(sellStockOrder.pending, (state) => {
+        state.purchasePanel.isLoading = true;
+        state.purchasePanel.isLoaded = false;
+      })
+      .addCase(sellStockOrder.fulfilled, (state, action) => {
+        if(action.payload.status === 200) {
+          console.log("Success walletSlice");
+          state.purchasePanel.isLoading = false;
+        state.purchasePanel.isLoaded = true;
+        state.purchasePanel.msg.message = "Transaction Complete!";
+        state.purchasePanel.msg.showMsg = true;
+        } else if (action.payload.status === 400) {
+          state.purchasePanel.isLoading = false;
+        state.purchasePanel.isLoaded = true;
+        state.purchasePanel.msg.message = action.payload.data;
+        state.purchasePanel.msg.showMsg = true;
+        }
+        
+      })
   },
 });
 

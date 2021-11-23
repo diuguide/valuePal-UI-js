@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { tickerDataState } from "../../slice/data/tickerSearchSlice";
-import { sellHoldingOrder } from "../../utilities/wallet";
+import { sellStockOrder } from "../../slice/wallet/walletSlice";
 
 const SellPanel = () => {
   const tickerData = useSelector(tickerDataState);
+  const dispatch = useDispatch();
   const [sellOrder, setSellOrder] = useState({
     ticker: tickerData.ticker || "",
     quantity: 0,
@@ -21,7 +23,8 @@ const SellPanel = () => {
 
   const handleClick = () => {
     console.log("Sell Order: ", sellOrder);
-    sellHoldingOrder(localStorage.getItem('authorization'), sellOrder);
+    // sellHoldingOrder(localStorage.getItem('authorization'), sellOrder);
+    dispatch(sellStockOrder({token: localStorage.getItem('authorization'), sellOrder: sellOrder}));
     setSellOrder({
       ticker: tickerData.ticker || "",
       quantity: 0,
