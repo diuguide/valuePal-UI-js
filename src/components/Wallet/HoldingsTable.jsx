@@ -31,6 +31,7 @@ const HoldingsTable = () => {
                     <th>Ticker</th>
                     <th>Quantity</th>
                     <th>Current Price</th>
+                    <th>Purchase Price (Avg)</th>
                     <th>Change</th>
                     <th>Total Value</th>
                   </tr>
@@ -42,6 +43,7 @@ const HoldingsTable = () => {
                         <td>{ticker.ticker}</td>
                         <td>{ticker.quantity}</td>
                         <td>{ticker.price.toFixed(2)}</td>
+                        <td>0</td>
                         <td>{ticker.change && ticker.change.toFixed(2)}</td>
                         <td>{ticker.totalValue.toFixed(2)}</td>
                       </tr>

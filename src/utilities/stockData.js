@@ -48,3 +48,15 @@ export const timeConverterFull = (unix) => {
   let date = new Date(num * 1000);
   return date.toLocaleString();
 };
+
+export const caluculateChange = (currentPrice, purchasePrice) => {
+  let dif = Math.abs(currentPrice-purchasePrice);
+  let perc = dif/purchasePrice;
+  let result;
+  if(purchasePrice > currentPrice) {
+    result = Math.abs(perc) * -1;
+    return result;
+  } else {
+    return perc;
+  }
+}
