@@ -30,16 +30,17 @@ const TickerSearch = () => {
     e.preventDefault();
     if (regex.test(ticker)) {
       dispatch(yahooTickerSearch(ticker));
-      dispatch(
-        yahooTickerHistory({ api: 2, interval: "1m", range: "1d", ticker })
-      );
+      setTimeout(() => {
+        dispatch(
+          yahooTickerHistory({ api: 2, interval: "1m", range: "1d", ticker })
+        );
+      }, 500);
+
       setTicker("");
     } else {
       setTicker("");
       dispatch(
-        showMessage(
-          "Must be all UPPERCASE, no numbers, or special characters!"
-        )
+        showMessage("Must be all UPPERCASE, no numbers, or special characters!")
       );
       setTimeout(() => {
         dispatch(hideMessage());
