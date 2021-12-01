@@ -43,7 +43,7 @@ const HoldingsTable = () => {
                         <td>{ticker.ticker}</td>
                         <td>{ticker.quantity}</td>
                         <td>{ticker.price.toFixed(2)}</td>
-                        <td>{ticker.avg_price}</td>
+                        <td>{ticker.avg_price.toFixed(2)}</td>
                         <td>{ticker.change && ticker.change.toFixed(2)}</td>
                         <td>{ticker.totalValue.toFixed(2)}</td>
                       </tr>
