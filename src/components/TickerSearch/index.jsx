@@ -59,7 +59,7 @@ const TickerSearch = () => {
               onChange={handleChange}
               placeholder="Search for stock"
             />
-            <Button onClick={handleClick}>Search</Button>
+            <button onClick={handleClick}>Search</button>
           </Form>
         </Col>
       </Row>

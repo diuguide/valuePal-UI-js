@@ -55,8 +55,10 @@ export const caluculateChange = (currentPrice, purchasePrice) => {
   let result;
   if(purchasePrice > currentPrice) {
     result = Math.abs(perc) * -1;
-    return result;
+    result *= 100;
+    return result.toFixed(2);
   } else {
-    return perc;
+    perc *= 100;
+    return perc.toFixed(2);
   }
 }

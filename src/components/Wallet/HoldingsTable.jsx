@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { retrieveWal, walletState, updateHoldingsTableFunc } from "../../slice/wallet/walletSlice";
 import { authState } from "../../slice/auth/authSlice";
 import { updateHoldingsTable } from "../../utilities/wallet";
+import { caluculateChange } from "../../utilities/stockData";
 
 const HoldingsTable = () => {
   const walletData = useSelector(walletState);
@@ -44,7 +45,7 @@ const HoldingsTable = () => {
                         <td>{ticker.quantity}</td>
                         <td>{ticker.price.toFixed(2)}</td>
                         <td>{ticker.avg_price.toFixed(2)}</td>
-                        <td>{ticker.change && ticker.change.toFixed(2)}</td>
+                        <td>{caluculateChange(ticker.price, ticker.avg_price)}</td>
                         <td>{ticker.totalValue.toFixed(2)}</td>
                       </tr>
                     );
