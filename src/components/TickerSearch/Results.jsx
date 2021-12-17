@@ -4,7 +4,7 @@ import { tickerDataState } from "../../slice/data/tickerSearchSlice";
 import { timeConverterFull } from "../../utilities/stockData";
 const TickerResults = () => {
   const tickerData = useSelector(tickerDataState);
-  
+  console.log("tickerData: ", tickerData.data);
 
   const quoteStyle = {
     longName: {
@@ -32,7 +32,7 @@ const TickerResults = () => {
         fontWeight: "900",
         marginLeft: "10px",
         color:
-          tickerData.data.quoteResponse.result[0].regularMarketChange < 0
+          tickerData.data.change < 0
             ? "red"
             : "green",
       },
@@ -40,7 +40,7 @@ const TickerResults = () => {
         fontSize: "20px",
         fontWeight: "600",
         color:
-          tickerData.data.quoteResponse.result[0].regularMarketChangePercent < 0
+          tickerData.data.changePercent < 0
             ? "red"
             : "green",
       },
@@ -48,7 +48,7 @@ const TickerResults = () => {
         fontSize: "20px",
         fontWeight: "600",
         color:
-          tickerData.data.quoteResponse.result[0].regularMarketChange < 0
+          tickerData.data.change < 0
             ? "red"
             : "green",
       },
@@ -59,17 +59,17 @@ const TickerResults = () => {
     <Row>
       <Col>
         <div style={quoteStyle.longName}>
-          {tickerData.data.quoteResponse.result[0].longName}
+          {tickerData.data.longName}
         </div>
         <div className="d-flex">
           <div style={quoteStyle.currentPrice}>
             $
-            {tickerData.data.quoteResponse.result[0].regularMarketPrice?.toFixed(
+            {tickerData.data.price?.toFixed(
               2
             )}
           </div>
           <div style={quoteStyle.marketChange.arrow}>
-            {tickerData.data.quoteResponse.result[0].regularMarketChange < 0 ? (
+            {tickerData.data.change < 0 ? (
               <div>&#8595;</div>
             ) : (
               <div>&#8593;</div>
@@ -77,25 +77,25 @@ const TickerResults = () => {
           </div>
           <div style={quoteStyle.marketChange}>
             <div style={quoteStyle.marketChange.value}>
-              {tickerData.data.quoteResponse.result[0].regularMarketChange?.toFixed(
+              {tickerData.data.change?.toFixed(
                 2
               )}
             </div>
             <div style={quoteStyle.marketChange.percentage}>
-              {tickerData.data.quoteResponse.result[0].regularMarketChangePercent?.toFixed(
+              {tickerData.data.changePercent?.toFixed(
                 2
               )}
               %
             </div>
           </div>
           <div style={quoteStyle.symbol}>
-            {tickerData.data.quoteResponse.result[0].symbol}
+            {tickerData.data.symbol}
           </div>
         </div>
         <div style={quoteStyle.time}>
           Last Updated:{" "}
           {timeConverterFull(
-            tickerData.data.quoteResponse.result[0].regularMarketTime
+            tickerData.data.time
           )}{" "}
           EDT
         </div>

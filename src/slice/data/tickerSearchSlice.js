@@ -5,11 +5,7 @@ export const yahooTickerSearch = createAsyncThunk(
   "fetchTicker",
   async (ticker) => {
     const response = await tickerData(ticker);
-    if (response.data.quoteResponse.result[0].quoteType == "EQUITY") {
-      return { response, ticker };
-    } else {
-      return null;
-    }
+    return { response, ticker };
   }
 );
 
@@ -20,7 +16,7 @@ const initialState = {
   dataLoaded: false,
   ticker: "",
   errorMsg: "",
-  showError: false
+  showError: false,
 };
 
 export const tickerDataSlice = createSlice({
@@ -46,7 +42,7 @@ export const tickerDataSlice = createSlice({
       })
       .addCase(yahooTickerSearch.fulfilled, (state, action) => {
         if (action.payload) {
-          state.data = action.payload.response.data;
+          state.data = action.payload.response.data[0];
           state.ticker = action.payload.ticker;
           state.dataLoading = false;
           state.dataLoaded = true;
