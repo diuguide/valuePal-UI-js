@@ -18,7 +18,7 @@ const BuyPanel = () => {
   const [order, setOrder] = useState({
     ticker: tickerData.ticker || "",
     quantity: 0,
-    price: tickerData.data.quoteResponse.result[0].regularMarketPrice || 0,
+    price: tickerData.data.price || 0,
   });
 
   let cost = order.quantity * order.price || null;
@@ -34,10 +34,8 @@ const BuyPanel = () => {
     setOrder({
       ticker: tickerData.ticker || "",
       quantity: 0,
-      price: tickerData.data.quoteResponse.result[0].regularMarketPrice || 0,
+      price: tickerData.data.price || 0,
     });
-    // dispatch(updateHoldingsTableFunc());
-    // dispatch(retrieveWal(auth.token));
   };
 
   const styling = {

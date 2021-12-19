@@ -11,7 +11,7 @@ const SellPanel = () => {
   const [sellOrder, setSellOrder] = useState({
     ticker: tickerData.ticker || "",
     quantity: 0,
-    price: tickerData.data.quoteResponse.result[0].regularMarketPrice || 0,
+    price: tickerData.data.price || 0,
   });
 
   let total = sellOrder.quantity * sellOrder.price || null;
@@ -23,12 +23,12 @@ const SellPanel = () => {
 
   const handleClick = () => {
     console.log("Sell Order: ", sellOrder);
-    // sellHoldingOrder(localStorage.getItem('authorization'), sellOrder);
+    
     dispatch(sellStockOrder({token: localStorage.getItem('authorization'), sellOrder: sellOrder}));
     setSellOrder({
       ticker: tickerData.ticker || "",
       quantity: 0,
-      price: tickerData.data.quoteResponse.result[0].regularMarketPrice || 0,
+      price: tickerData.data.price || 0,
     });
   };
 
