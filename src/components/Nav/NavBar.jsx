@@ -14,6 +14,10 @@ const NavBar = () => {
     fontSize: "10px",
     margin: "2px",
     color: "lightblue",
+    username: {
+      color: 'white',
+      marginRight: '10px'
+    }
   };
 
   const handleLogout = () => {
@@ -27,7 +31,7 @@ const NavBar = () => {
       <Container>
         <Navbar.Brand href="/">ValuePal</Navbar.Brand>
         <Nav className="d-flex justify-content-end align-items-center">
-          {auth.isAuthenticated && <div>{wallet.user.username}</div>}
+          {auth.isAuthenticated && <div style={linkStyle.username}>{wallet.user.username}</div>}
           {!auth.isAuthenticated && <Login />}
           {auth.isAuthenticated && (
             <div style={linkStyle}>You are Logged In | </div>
