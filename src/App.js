@@ -8,12 +8,14 @@ import NavBar from "./components/Nav/NavBar";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { isLoaded } from "./slice/auth/authSlice";
+import { getUserData } from "./slice/wallet/walletSlice";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if(localStorage.getItem('authorization')) {
       dispatch(isLoaded(localStorage.getItem("authorization")));
+      dispatch(getUserData(localStorage.getItem("authorization")));
     }
   });
   return (
