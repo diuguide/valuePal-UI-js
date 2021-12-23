@@ -2,10 +2,12 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { authState, logout } from "../../slice/auth/authSlice";
+import { walletState } from "../../slice/wallet/walletSlice";
 import Login from "../Auth/Login";
 
 const NavBar = () => {
   const auth = useSelector(authState);
+  const wallet = useSelector(walletState);
   const dispatch = useDispatch();
   const linkStyle = {
     textDecoration: "none",
@@ -25,6 +27,7 @@ const NavBar = () => {
       <Container>
         <Navbar.Brand href="/">ValuePal</Navbar.Brand>
         <Nav className="d-flex justify-content-end align-items-center">
+          {auth.isAuthenticated && <div>{wallet.user.username}</div>}
           {!auth.isAuthenticated && <Login />}
           {auth.isAuthenticated && (
             <div style={linkStyle}>You are Logged In | </div>
