@@ -8,6 +8,7 @@ import {
 } from "../../slice/error/errorSlice";
 import { isLoading, isLoaded } from "../../slice/auth/authSlice";
 import { useState } from "react";
+import { getUserData } from "../../slice/wallet/walletSlice";
 
 const Login = () => {
   const error = useSelector(errorState);
@@ -36,6 +37,7 @@ const Login = () => {
           localStorage.setItem("authorization", res.headers.authorization);
           console.log("Response login: ", res);
           dispatch(isLoaded(res.headers.authorization));
+          dispatch(getUserData(res.headers.authorization));
         }
       })
       .catch((err) => {

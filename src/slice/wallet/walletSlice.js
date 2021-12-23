@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { userData } from "../../utilities/auth";
 import {
   purchaseOrder,
   retrieveWallet,
@@ -11,6 +12,11 @@ export const retrieveWal = createAsyncThunk("fetchWallet", async (token) => {
   return response;
 });
 
+export const getUserData = createAsyncThunk("getUserData", async (token) => {
+  const response = await userData(token);
+  return response;
+});
+
 export const updateHoldingsTableFunc = createAsyncThunk(
   "updateHoldingsTable",
   async () => {
@@ -19,14 +25,11 @@ export const updateHoldingsTableFunc = createAsyncThunk(
   }
 );
 
-export const buyStockOrder = createAsyncThunk(
-  "buyStock",
-  async (order) => {
-    const response = await purchaseOrder(order.token, order.buyOrder);
-    console.log("Response BUY ORDER: ", response);
-    return response;
-  }
-);
+export const buyStockOrder = createAsyncThunk("buyStock", async (order) => {
+  const response = await purchaseOrder(order.token, order.buyOrder);
+  console.log("Response BUY ORDER: ", response);
+  return response;
+});
 
 export const sellStockOrder = createAsyncThunk("sellStock", async (order) => {
   const response = await sellHoldingOrder(order.token, order.sellOrder);

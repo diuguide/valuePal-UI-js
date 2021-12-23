@@ -6,11 +6,22 @@ const awsUrl =
 
 //Client connection
 export const authClient = axios.create({
-  baseURL: localUrl,
+  baseURL: awsUrl,
   headers: {
     "Content-Type": "application/json",
   },
 });
+
+export const userData = async (token) => {
+  let headers = {
+    Authorization: token,
+  };
+  let response = await authClient.get("/users/getUserInfo", {
+    headers,
+  });
+  console.log("Response get user info: ", response.data);
+  return response.data;
+};
 
 export const registerUser = async (user) => {
   let response = await authClient.post("/users/add", user);
