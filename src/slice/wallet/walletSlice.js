@@ -21,13 +21,11 @@ export const updateHoldingsTableFunc = createAsyncThunk(
 
 export const buyStockOrder = createAsyncThunk("buyStock", async (order) => {
   const response = await purchaseOrder(order.token, order.buyOrder);
-  console.log("Response BUY ORDER: ", response);
   return response;
 });
 
 export const sellStockOrder = createAsyncThunk("sellStock", async (order) => {
   const response = await sellHoldingOrder(order.token, order.sellOrder);
-  console.log("Sell STOCK RESPONSE IN SLICE: ", response);
   return response;
 });
 
@@ -46,8 +44,8 @@ const initialState = {
   user: {
     username: "",
     firstName: "",
-    email: ""
-  }
+    email: "",
+  },
 };
 
 export const walletSlice = createSlice({

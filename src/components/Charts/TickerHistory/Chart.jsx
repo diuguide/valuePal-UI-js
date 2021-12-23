@@ -3,7 +3,6 @@ import Chart from "react-apexcharts";
 import { timeConvertArray } from "../../../utilities/stockData";
 
 const History = ({ data }) => {
-  console.log("Chart Data: ", data);
   const chartState = {
     options: {
       dataLabels: {

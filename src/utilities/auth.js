@@ -19,7 +19,7 @@ export const userData = async (token) => {
   let response = await authClient.get("/users/getUserInfo", {
     headers,
   });
-  console.log("Response get user info: ", response.data);
+
   return response.data;
 };
 

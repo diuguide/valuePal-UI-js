@@ -12,7 +12,6 @@ export const newsData = async () => {
 
 export const tickerData = async (ticker) => {
   let response = await authClient.post(`/calls/getQuoteYH?ticker=${ticker}`);
-  console.log("Ticker search response: ", response.data[0]);
   return response;
 };
 
@@ -50,10 +49,10 @@ export const timeConverterFull = (unix) => {
 };
 
 export const caluculateChange = (currentPrice, purchasePrice) => {
-  let dif = Math.abs(currentPrice-purchasePrice);
-  let perc = dif/purchasePrice;
+  let dif = Math.abs(currentPrice - purchasePrice);
+  let perc = dif / purchasePrice;
   let result;
-  if(purchasePrice > currentPrice) {
+  if (purchasePrice > currentPrice) {
     result = Math.abs(perc) * -1;
     result *= 100;
     return result.toFixed(2);
@@ -61,4 +60,4 @@ export const caluculateChange = (currentPrice, purchasePrice) => {
     perc *= 100;
     return perc.toFixed(2);
   }
-}
+};

@@ -35,13 +35,13 @@ const Login = () => {
         });
         if (res.status === 200) {
           localStorage.setItem("authorization", res.headers.authorization);
-          console.log("Response login: ", res);
+
           dispatch(isLoaded(res.headers.authorization));
           dispatch(getUserData(res.headers.authorization));
         }
       })
       .catch((err) => {
-        console.log(err.response);
+        console.error(err.response);
         dispatch(showMessage(err.response.data.error));
         setTimeout(() => {
           dispatch(hideMessage());

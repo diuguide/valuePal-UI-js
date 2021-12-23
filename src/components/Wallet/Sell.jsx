@@ -22,9 +22,12 @@ const SellPanel = () => {
   };
 
   const handleClick = () => {
-    console.log("Sell Order: ", sellOrder);
-    
-    dispatch(sellStockOrder({token: localStorage.getItem('authorization'), sellOrder: sellOrder}));
+    dispatch(
+      sellStockOrder({
+        token: localStorage.getItem("authorization"),
+        sellOrder: sellOrder,
+      })
+    );
     setSellOrder({
       ticker: tickerData.ticker || "",
       quantity: 0,

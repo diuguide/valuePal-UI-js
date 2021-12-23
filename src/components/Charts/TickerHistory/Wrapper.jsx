@@ -5,7 +5,6 @@ import History from "./Chart";
 
 const HistChartWrapper = () => {
   const tickerHist = useSelector(tickerHistoryState);
-  console.log("ticker history in wrapper: ", tickerHist);
   return (
     <Row>
       {!tickerHist.showError ? (
