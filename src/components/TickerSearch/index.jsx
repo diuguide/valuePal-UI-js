@@ -16,7 +16,6 @@ const TickerSearch = () => {
   const dispatch = useDispatch();
   const tickerState = useSelector(tickerDataState);
   const error = useSelector(errorState);
-
   const [ticker, setTicker] = useState("");
 
   const handleChange = (e) => {

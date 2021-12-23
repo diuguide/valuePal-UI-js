@@ -35,7 +35,7 @@ const HoldingsTable = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {walletData.wallet.holdings.map((ticker, index) => {
+                  {walletData.wallet.holdings && walletData.wallet.holdings.map((ticker, index) => {
                     return (
                       <tr key={index}>
                         <td>{ticker.ticker}</td>
