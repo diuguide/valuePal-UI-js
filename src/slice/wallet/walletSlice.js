@@ -49,6 +49,11 @@ const initialState = {
       showMsg: false,
     },
   },
+  user: {
+    username: "",
+    firstName: "",
+    email: ""
+  }
 };
 
 export const walletSlice = createSlice({
@@ -120,6 +125,18 @@ export const walletSlice = createSlice({
           state.purchasePanel.msg.message = action.payload.data;
           state.purchasePanel.msg.showMsg = true;
         }
+      })
+      .addCase(getUserData.pending, (state) => {
+        state.isLoading = true;
+        state.isLoaded = false;
+      })
+      .addCase(getUserData.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isLoaded = true;
+        state.wallet = action.payload.wallet;
+        state.user.username = action.payload.username;
+        state.user.firstName = action.payload.firstName;
+        state.user.email = action.payload.email;
       });
   },
 });
