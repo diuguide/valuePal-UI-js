@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { Row, Col, Form, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
   tickerDataState,

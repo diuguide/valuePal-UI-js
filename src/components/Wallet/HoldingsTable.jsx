@@ -1,18 +1,14 @@
 import { Row, Col, Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { retrieveWal, walletState, updateHoldingsTableFunc, getUserData } from "../../slice/wallet/walletSlice";
-import { authState } from "../../slice/auth/authSlice";
-import { updateHoldingsTable } from "../../utilities/wallet";
+import { walletState, updateHoldingsTableFunc, getUserData } from "../../slice/wallet/walletSlice";
 import { caluculateChange } from "../../utilities/stockData";
 
 const HoldingsTable = () => {
   const walletData = useSelector(walletState);
-  const auth = useSelector(authState);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(retrieveWal(auth.token));
     dispatch(getUserData(localStorage.getItem('authorization')));
   }, []);
 

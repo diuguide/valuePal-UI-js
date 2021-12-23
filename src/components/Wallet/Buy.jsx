@@ -2,18 +2,13 @@ import { Row, Col, Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { tickerDataState } from "../../slice/data/tickerSearchSlice";
-import { purchaseOrder } from "../../utilities/wallet";
 import { useDispatch } from "react-redux";
-import { authState } from "../../slice/auth/authSlice";
 import {
-  retrieveWal,
-  updateHoldingsTableFunc,
   buyStockOrder
 } from "../../slice/wallet/walletSlice";
 
 const BuyPanel = () => {
   const tickerData = useSelector(tickerDataState);
-  const auth = useSelector(authState);
   const dispatch = useDispatch();
   const [order, setOrder] = useState({
     ticker: tickerData.ticker || "",

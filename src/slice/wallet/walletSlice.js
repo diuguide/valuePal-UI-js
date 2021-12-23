@@ -2,15 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { userData } from "../../utilities/auth";
 import {
   purchaseOrder,
-  retrieveWallet,
   sellHoldingOrder,
-  updateHoldingsTable,
+  updateHoldings,
 } from "../../utilities/wallet";
-
-export const retrieveWal = createAsyncThunk("fetchWallet", async (token) => {
-  const response = await retrieveWallet(token);
-  return response;
-});
 
 export const getUserData = createAsyncThunk("getUserData", async (token) => {
   const response = await userData(token);
@@ -20,7 +14,7 @@ export const getUserData = createAsyncThunk("getUserData", async (token) => {
 export const updateHoldingsTableFunc = createAsyncThunk(
   "updateHoldingsTable",
   async () => {
-    const response = await updateHoldingsTable();
+    const response = await updateHoldings();
     return response;
   }
 );
@@ -75,15 +69,6 @@ export const walletSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(retrieveWal.pending, (state) => {
-        state.isLoading = true;
-        state.isLoaded = false;
-      })
-      .addCase(retrieveWal.fulfilled, (state, action) => {
-        state.wallet = action.payload;
-        state.isLoading = false;
-        state.isLoaded = true;
-      })
       .addCase(updateHoldingsTableFunc.pending, (state) => {
         state.isLoading = true;
         state.isLoaded = false;
