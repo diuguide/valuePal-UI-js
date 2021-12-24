@@ -2,6 +2,10 @@ import { Row, Col, Table } from "react-bootstrap";
 import { useEffect} from "react";
 
 const OrdersTable = () => {
+    useEffect(() => {
+        console.log("orders table render!");
+    }, []);
+    
     return(
         <>
         <Row>

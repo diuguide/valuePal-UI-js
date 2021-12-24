@@ -19,6 +19,13 @@ export const updateHoldingsTableFunc = createAsyncThunk(
   }
 );
 
+export const userOrders = createAsyncThunk('getUserOrders',
+async (token) => {
+  const response = await getUserOrders(token);
+  return response;
+}
+)
+
 export const buyStockOrder = createAsyncThunk("buyStock", async (order) => {
   const response = await purchaseOrder(order.token, order.buyOrder);
   return response;

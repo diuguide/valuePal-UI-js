@@ -5,6 +5,14 @@ export const updateHoldings = async () => {
   return response.data.quoteResponse.result;
 };
 
+export const getUserOrders = async (token) => {
+  let headers = {
+    Authorization: token,
+  };
+  let response = await authClient.get("/users/getUserOrders", { headers });
+  return response.data;
+}
+
 export const purchaseOrder = async (token, order) => {
   let headers = {
     Authorization: token,
