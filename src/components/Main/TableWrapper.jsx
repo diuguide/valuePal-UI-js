@@ -13,6 +13,9 @@ const TableWrapper = () => {
       case "order":
         console.log("oorders table render fired");
         break;
+      case "analytics":
+        console.log("analytics fired!");
+        break;
       default:
         return <HoldingsTable />;
     }
