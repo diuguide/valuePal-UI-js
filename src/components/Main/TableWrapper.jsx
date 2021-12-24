@@ -2,6 +2,7 @@ import { Row, Col } from "react-bootstrap";
 import InnerNav from "../Nav/InnerNav";
 import { useState } from "react";
 import HoldingsTable from "../Wallet/HoldingsTable";
+import OrdersTable from "../Wallet/OrdersTable";
 
 const TableWrapper = () => {
   const [tabSelect, setTabSelect] = useState("holding");
@@ -11,8 +12,7 @@ const TableWrapper = () => {
       case "holding":
         return <HoldingsTable />;
       case "order":
-        console.log("oorders table render fired");
-        break;
+        return <OrdersTable />;
       case "analytics":
         console.log("analytics fired!");
         break;

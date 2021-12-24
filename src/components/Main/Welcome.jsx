@@ -32,15 +32,10 @@ const Welcome = () => {
       {auth.isAuthenticated && (
         <Row className="bg-light">
           <Col>
-            <HoldingsTable />
+            <TableWrapper />
           </Col>
         </Row>
       )}
-      <Row>
-        <Col>
-          <TableWrapper />
-        </Col>
-      </Row>
     </Container>
   );
 };
