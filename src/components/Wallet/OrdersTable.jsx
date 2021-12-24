@@ -34,18 +34,19 @@ const OrdersTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {order.order.orders.map((order, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{order.orderType}</td>
-                      <td>{order.ticker}</td>
-                      <td>{order.price.toFixed(2)}</td>
-                      <td>{order.quantity}</td>
-                      <td>{order.totalValue.toFixed(2)}</td>
-                      <td>{order.status}</td>
-                    </tr>
-                  );
-                })}
+                {order.order.orders &&
+                  order.order.orders.map((order, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{order.orderType}</td>
+                        <td>{order.ticker}</td>
+                        <td>{order.price.toFixed(2)}</td>
+                        <td>{order.quantity}</td>
+                        <td>{order.totalValue.toFixed(2)}</td>
+                        <td>{order.status}</td>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </Table>
           </Col>
