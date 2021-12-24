@@ -4,6 +4,7 @@ import {
   purchaseOrder,
   sellHoldingOrder,
   updateHoldings,
+  getUserOrders
 } from "../../utilities/wallet";
 
 export const getUserData = createAsyncThunk("getUserData", async (token) => {
@@ -19,12 +20,10 @@ export const updateHoldingsTableFunc = createAsyncThunk(
   }
 );
 
-export const userOrders = createAsyncThunk('getUserOrders',
-async (token) => {
+export const userOrders = createAsyncThunk("getUserOrders", async (token) => {
   const response = await getUserOrders(token);
   return response;
-}
-)
+});
 
 export const buyStockOrder = createAsyncThunk("buyStock", async (order) => {
   const response = await purchaseOrder(order.token, order.buyOrder);
@@ -53,6 +52,11 @@ const initialState = {
     firstName: "",
     email: "",
   },
+  order: {
+    isLoading: false,
+    isLoaded: false,
+    orders: {}
+  }
 };
 
 export const walletSlice = createSlice({
@@ -127,6 +131,15 @@ export const walletSlice = createSlice({
         state.user.username = action.payload.username;
         state.user.firstName = action.payload.firstName;
         state.user.email = action.payload.email;
+      })
+      .addCase(userOrders.pending, (state) => {
+        state.order.isLoading = true;
+        state.order.isLoaded = false;
+      })
+      .addCase(userOrders.fulfilled, (state, action) => {
+        state.order.isLoading = false;
+        state.order.isLoaded = true;
+        state.order.orders = action.payload;
       });
   },
 });
