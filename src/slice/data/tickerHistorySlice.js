@@ -4,13 +4,18 @@ import { tickerHistory } from "../../utilities/stockData";
 export const yahooTickerHistory = createAsyncThunk(
   "fetchHistory",
   async (ticker) => {
-    const response = await tickerHistory(
-      ticker.api,
-      ticker.interval,
-      ticker.range,
-      ticker.ticker
-    );
-    return { response, ticker };
+    try {
+      const response = await tickerHistory(
+        ticker.api,
+        ticker.interval,
+        ticker.range,
+        ticker.ticker
+      );
+      console.log("response ticker history: ", response);
+      return { response, ticker };
+    } catch (err) {
+      console.error(err);
+    }
   }
 );
 
@@ -21,7 +26,7 @@ const initialState = {
   dataLoaded: false,
   ticker: "",
   errorMsg: "",
-  showError: false
+  showError: false,
 };
 
 export const tickerHistorySlice = createSlice({
@@ -46,7 +51,7 @@ export const tickerHistorySlice = createSlice({
         state.errorMsg = "";
       })
       .addCase(yahooTickerHistory.fulfilled, (state, action) => {
-        if (!action.payload.response.data.quoteResponse) {
+        if (!action.payload.response.data.spark) {
           let temp = action.payload.ticker.ticker;
           state.data = action.payload.response.data[temp];
           state.ticker = temp;

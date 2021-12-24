@@ -4,8 +4,13 @@ import { tickerData } from "../../utilities/stockData";
 export const yahooTickerSearch = createAsyncThunk(
   "fetchTicker",
   async (ticker) => {
-    const response = await tickerData(ticker);
-    return { response, ticker };
+    try {
+      const response = await tickerData(ticker);
+      console.log("response ticker search: ", response);
+      return { response, ticker };
+    } catch (err) {
+      console.error("Error ticker search: ", err);
+    }
   }
 );
 
