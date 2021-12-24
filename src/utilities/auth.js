@@ -6,7 +6,7 @@ const awsUrl =
 
 //Client connection
 export const authClient = axios.create({
-  baseURL: localUrl,
+  baseURL: awsUrl,
   headers: {
     "Content-Type": "application/json",
   },
