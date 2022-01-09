@@ -22,12 +22,16 @@ const HoldingsTable = () => {
   };
 
   const rowStyle = {
-    ticker: {},
+    ticker: {
+      fontWeight: 900,
+    },
     quantity: {},
     price: {},
     avg_price: {},
-    change: {},
-    totalValue: {}
+    change: {
+      color: {},
+    },
+    totalValue: {},
   };
 
   return (
@@ -55,11 +59,11 @@ const HoldingsTable = () => {
                           <td style={rowStyle.ticker}>{ticker.ticker}</td>
                           <td style={rowStyle.quantity}>{ticker.quantity}</td>
                           <td style={rowStyle.price}>
-                            {ticker.price.toFixed(2)}
+                            ${ticker.price.toFixed(2)}
                           </td>
                           <td style={rowStyle.avg_price}>
                             {ticker.avg_price
-                              ? ticker.avg_price.toFixed(2)
+                              ? "$" + ticker.avg_price.toFixed(2)
                               : null}
                           </td>
                           <td style={rowStyle.change}>
