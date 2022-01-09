@@ -21,6 +21,15 @@ const HoldingsTable = () => {
     dispatch(getUserData(localStorage.getItem("authorization")));
   };
 
+  const rowStyle = {
+    ticker: {},
+    quantity: {},
+    price: {},
+    avg_price: {},
+    change: {},
+    totalValue: {}
+  };
+
   return (
     <>
       {walletData.isLoaded && (
@@ -43,18 +52,22 @@ const HoldingsTable = () => {
                     walletData.wallet.holdings.map((ticker, index) => {
                       return (
                         <tr key={index}>
-                          <td>{ticker.ticker}</td>
-                          <td>{ticker.quantity}</td>
-                          <td>{ticker.price.toFixed(2)}</td>
-                          <td>
+                          <td style={rowStyle.ticker}>{ticker.ticker}</td>
+                          <td style={rowStyle.quantity}>{ticker.quantity}</td>
+                          <td style={rowStyle.price}>
+                            {ticker.price.toFixed(2)}
+                          </td>
+                          <td style={rowStyle.avg_price}>
                             {ticker.avg_price
                               ? ticker.avg_price.toFixed(2)
                               : null}
                           </td>
-                          <td>
+                          <td style={rowStyle.change}>
                             {caluculateChange(ticker.price, ticker.avg_price)}
                           </td>
-                          <td>{ticker.totalValue.toFixed(2)}</td>
+                          <td style={rowStyle.totalValue}>
+                            {ticker.totalValue.toFixed(2)}
+                          </td>
                         </tr>
                       );
                     })}
