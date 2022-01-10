@@ -29,7 +29,7 @@ const HoldingsTable = () => {
     price: {},
     avg_price: {},
     change: {
-      color: {},
+      color: "green",
     },
     totalValue: {},
   };
@@ -66,7 +66,7 @@ const HoldingsTable = () => {
                               ? "$" + ticker.avg_price.toFixed(2)
                               : null}
                           </td>
-                          <td style={rowStyle.change}>
+                          <td style={rowStyle.change} id="change">
                             {caluculateChange(ticker.price, ticker.avg_price)}
                           </td>
                           <td style={rowStyle.totalValue}>
