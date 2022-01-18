@@ -3,9 +3,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { tickerDataState } from "../../slice/data/tickerSearchSlice";
 import { useDispatch } from "react-redux";
-import {
-  buyStockOrder
-} from "../../slice/wallet/walletSlice";
+import { buyStockOrder, getUserData } from "../../slice/wallet/walletSlice";
 
 const BuyPanel = () => {
   const tickerData = useSelector(tickerDataState);
@@ -25,12 +23,20 @@ const BuyPanel = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(buyStockOrder({token: localStorage.getItem("authorization"), buyOrder: order}))
+    dispatch(
+      buyStockOrder({
+        token: localStorage.getItem("authorization"),
+        buyOrder: order,
+      })
+    );
     setOrder({
       ticker: tickerData.ticker || "",
       quantity: 0,
       price: tickerData.data.price || 0,
     });
+    setTimeout(() => {
+      dispatch(getUserData(localStorage.getItem("authorization")));
+    }, 500);
   };
 
   const styling = {
