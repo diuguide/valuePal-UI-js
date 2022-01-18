@@ -95,7 +95,7 @@ export const walletSlice = createSlice({
         if (action.payload.status === 200) {
           state.purchasePanel.isLoading = false;
           state.purchasePanel.isLoaded = true;
-          state.purchasePanel.msg.message = "Transaction Complete!";
+          state.purchasePanel.msg.message = `Order #${action.payload.data.id} Complete! Sold ${action.payload.data.quantity} shares of ${action.payload.data.ticker} @ $${action.payload.data.price}`;
           state.purchasePanel.msg.showMsg = true;
         } else if (action.payload.status === 400) {
           state.purchasePanel.isLoading = false;
@@ -112,7 +112,7 @@ export const walletSlice = createSlice({
         if (action.payload.status === 200) {
           state.purchasePanel.isLoading = false;
           state.purchasePanel.isLoaded = true;
-          state.purchasePanel.msg.message = "Transaction Complete!";
+          state.purchasePanel.msg.message = `Order #${action.payload.data.id} Complete! Purchased ${action.payload.data.quantity} shares of ${action.payload.data.ticker} @ $${action.payload.data.price}`;
           state.purchasePanel.msg.showMsg = true;
         } else if (action.payload.status === 400) {
           state.purchasePanel.isLoading = false;
