@@ -19,7 +19,7 @@ export const purchaseOrder = async (token, order) => {
   };
   try {
     let response = await authClient.post("/stock/addStock", order, { headers });
-    return response.data;
+    return response;
   } catch (err) {
     return err.response;
   }

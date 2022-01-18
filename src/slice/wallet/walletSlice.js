@@ -27,6 +27,7 @@ export const userOrders = createAsyncThunk("getUserOrders", async (token) => {
 
 export const buyStockOrder = createAsyncThunk("buyStock", async (order) => {
   const response = await purchaseOrder(order.token, order.buyOrder);
+  console.log("Response buystockorder: ", response)
   return response;
 });
 
