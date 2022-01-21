@@ -4,7 +4,7 @@ const InnerNav = ({ page }) => {
   return (
     <Nav variant="tabs" defaultActiveKey="/home">
       <Nav.Item>
-        <Nav.Link onClick={() => page("holding")}>Holdings</Nav.Link>
+        <Nav.Link defaultActiveKey onClick={() => page("holding")}>Holdings</Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link onClick={() => page("order")}>Orders</Nav.Link>

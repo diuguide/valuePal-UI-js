@@ -23,15 +23,22 @@ const HoldingsTable = () => {
 
   const rowStyle = {
     ticker: {
+      display: 'flex', 
+      justifyContent:'center',
+      alignContent:'center',
       fontWeight: 900,
+      fontSize:'32px'
     },
     quantity: {},
     price: {},
     avg_price: {},
     change: {
       color: "green",
+      fontWeight:900,
     },
-    totalValue: {},
+    totalValue: {
+      fontSize: "32px",
+    },
   };
 
   return (

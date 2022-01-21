@@ -25,6 +25,7 @@ const OrdersTable = () => {
             <Table striped bordered hover>
               <thead>
                 <tr>
+                  <th>Timestamp</th>
                   <th>Type</th>
                   <th>Ticker</th>
                   <th>Price</th>
@@ -38,6 +39,7 @@ const OrdersTable = () => {
                   order.order.orders.map((order, index) => {
                     return (
                       <tr key={index}>
+                        <td>{order.timestamp}</td>
                         <td>{order.orderType}</td>
                         <td>{order.ticker}</td>
                         <td>{order.price.toFixed(2)}</td>
