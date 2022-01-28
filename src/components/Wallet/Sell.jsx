@@ -3,7 +3,7 @@ import { Row, Col, Button, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { tickerDataState } from "../../slice/data/tickerSearchSlice";
-import { sellStockOrder } from "../../slice/wallet/walletSlice";
+import { sellStockOrder, getUserData } from "../../slice/wallet/walletSlice";
 
 const SellPanel = () => {
   const tickerData = useSelector(tickerDataState);
@@ -33,6 +33,9 @@ const SellPanel = () => {
       quantity: 0,
       price: tickerData.data.price || 0,
     });
+    setTimeout(() => {
+      dispatch(getUserData(localStorage.getItem("authorization")));
+    }, 500);
   };
 
   const styling = {
