@@ -13,6 +13,14 @@ export const getUserOrders = async (token) => {
   return response.data;
 }
 
+export const getUserHoldings = async (token) => {
+  let headers = {
+    Authorization: token,
+  };
+  let response = await authClient.get("/users/getUserHoldings", { headers });
+  return response.data;
+}
+
 export const purchaseOrder = async (token, order) => {
   let headers = {
     Authorization: token,

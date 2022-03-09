@@ -5,15 +5,22 @@ import {
   walletState,
   updateHoldingsTableFunc,
   getUserData,
+  userHoldings,
 } from "../../slice/wallet/walletSlice";
 import { caluculateChange } from "../../utilities/stockData";
+import Loader from "../Loader/Loader";
 
 const HoldingsTable = () => {
   const walletData = useSelector(walletState);
   const dispatch = useDispatch();
 
+  const getHoldings = () => {
+    dispatch(userHoldings(localStorage.getItem("authorization")));
+  };
+
   useEffect(() => {
-    dispatch(getUserData(localStorage.getItem("authorization")));
+    console.log("holdings table render!");
+    getHoldings();
   }, []);
 
   const updateHoldingsTableButton = () => {
@@ -23,18 +30,18 @@ const HoldingsTable = () => {
 
   const rowStyle = {
     ticker: {
-      display: 'flex', 
-      justifyContent:'center',
-      alignContent:'center',
+      display: "flex",
+      justifyContent: "center",
+      alignContent: "center",
       fontWeight: 900,
-      fontSize:'32px'
+      fontSize: "32px",
     },
     quantity: {},
     price: {},
     avg_price: {},
     change: {
       color: "green",
-      fontWeight:900,
+      fontWeight: 900,
     },
     totalValue: {
       fontSize: "32px",
@@ -43,7 +50,7 @@ const HoldingsTable = () => {
 
   return (
     <>
-      {walletData.isLoaded && (
+      {walletData.holding.isLoaded ? (
         <>
           <Row>
             <Col>
@@ -92,6 +99,8 @@ const HoldingsTable = () => {
             </Col>
           </Row>
         </>
+      ) : (
+        <Loader />
       )}
     </>
   );
