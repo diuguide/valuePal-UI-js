@@ -11,10 +11,10 @@ const SellPanel = () => {
   const [sellOrder, setSellOrder] = useState({
     ticker: tickerData.ticker || "",
     quantity: 0,
-    price: tickerData.data.price || 0,
+    price: 0,
   });
 
-  let total = sellOrder.quantity * sellOrder.price || null;
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +31,7 @@ const SellPanel = () => {
     setSellOrder({
       ticker: tickerData.ticker || "",
       quantity: 0,
-      price: tickerData.data.price || 0,
+      price: 0,
     });
     setTimeout(() => {
       dispatch(getUserData(localStorage.getItem("authorization")));
@@ -76,9 +76,6 @@ const SellPanel = () => {
             ></Form.Control>
           </Form.Group>
         </Form>
-        <div style={styling.cost}>
-          {sellOrder.quantity == 0 ? 0 : "$" + total.toFixed(2)}
-        </div>
       </Col>
       <Col>
         <Button onClick={handleClick}>Sell</Button>

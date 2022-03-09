@@ -11,10 +11,8 @@ const BuyPanel = () => {
   const [order, setOrder] = useState({
     ticker: tickerData.ticker || "",
     quantity: 0,
-    price: tickerData.data.price || 0,
+    price: 0,
   });
-
-  let cost = order.quantity * order.price || null;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +30,7 @@ const BuyPanel = () => {
     setOrder({
       ticker: tickerData.ticker || "",
       quantity: 0,
-      price: tickerData.data.price || 0,
+      price: 0,
     });
     setTimeout(() => {
       dispatch(getUserData(localStorage.getItem("authorization")));
@@ -82,9 +80,6 @@ const BuyPanel = () => {
             />
           </Form.Group>
         </Form>
-        <div style={styling.cost}>
-          {order.quantity == 0 ? 0 : "$" + cost.toFixed(2)}
-        </div>
       </Col>
     </Row>
   );
