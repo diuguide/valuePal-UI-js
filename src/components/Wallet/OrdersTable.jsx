@@ -7,6 +7,7 @@ import Loader from "../Loader/Loader";
 const OrdersTable = () => {
   const dispatch = useDispatch();
   const order = useSelector(walletState);
+  console.log("ORDER no load: ", order.order.orders);
 
   const getOrders = () => {
     dispatch(userOrders(localStorage.getItem("authorization")));
@@ -35,7 +36,7 @@ const OrdersTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {order.order.orders &&
+                {order.order.orders.length > 0 &&
                   order.order.orders.map((order, index) => {
                     return (
                       <tr key={index}>

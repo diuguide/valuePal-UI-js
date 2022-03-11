@@ -160,9 +160,16 @@ export const walletSlice = createSlice({
         state.order.isLoaded = false;
       })
       .addCase(userOrders.fulfilled, (state, action) => {
-        state.order.isLoading = false;
-        state.order.isLoaded = true;
-        state.order.orders = action.payload;
+        if (action.payload.status === 200) {
+          state.order.isLoading = false;
+          state.order.isLoaded = true;
+          state.order.orders = action.payload.data;
+        } else if (action.payload.status === 400) {
+          state.order.isLoading = false;
+          state.order.isLoaded = true;
+          state.order.msg.message = action.payload.data;
+          state.order.msg.showMsg = true;
+        }
       })
       .addCase(userHoldings.pending, (state) => {
         state.holding.isLoading = true;
@@ -173,7 +180,7 @@ export const walletSlice = createSlice({
         if (action.payload.status === 200) {
           state.holding.isLoading = false;
           state.holding.isLoaded = true;
-          state.holding.holdings = action.payload;
+          state.holding.holdings = action.payload.data;
         } else if (action.payload.status === 400) {
           state.holding.isLoading = false;
           state.holding.isLoaded = true;

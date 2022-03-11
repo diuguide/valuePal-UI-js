@@ -9,8 +9,13 @@ export const getUserOrders = async (token) => {
   let headers = {
     Authorization: token,
   };
-  let response = await authClient.get("/users/getUserOrders", { headers });
-  return response.data;
+  try {
+    let response = await authClient.get("/users/getUserOrders", { headers });
+    return response;
+  } catch (err) {
+    console.log("error getuserOrders: ", err.response);
+    return err.response;
+  }
 };
 
 export const getUserHoldings = async (token) => {
