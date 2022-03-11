@@ -13,7 +13,6 @@ export const getUserOrders = async (token) => {
     let response = await authClient.get("/users/getUserOrders", { headers });
     return response;
   } catch (err) {
-    console.log("error getuserOrders: ", err.response);
     return err.response;
   }
 };
@@ -24,10 +23,8 @@ export const getUserHoldings = async (token) => {
   };
   try {
     let response = await authClient.get("/users/getUserHoldings", { headers });
-    console.log("getUserHoldings: ", response);
     return response;
   } catch (err) {
-    console.log("error getuserHoldings: ", err.response);
     return err.response;
   }
 };

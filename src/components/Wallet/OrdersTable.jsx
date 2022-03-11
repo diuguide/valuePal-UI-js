@@ -7,14 +7,13 @@ import Loader from "../Loader/Loader";
 const OrdersTable = () => {
   const dispatch = useDispatch();
   const order = useSelector(walletState);
-  console.log("ORDER no load: ", order.order.orders);
+  
 
   const getOrders = () => {
     dispatch(userOrders(localStorage.getItem("authorization")));
   };
 
   useEffect(() => {
-    console.log("orders table render!");
     getOrders();
   }, []);
 
@@ -36,7 +35,7 @@ const OrdersTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {order.order.orders.length > 0 &&
+                {order.order.orders.length > 0 ?
                   order.order.orders.map((order, index) => {
                     return (
                       <tr key={index}>
@@ -49,7 +48,9 @@ const OrdersTable = () => {
                         <td>{order.status}</td>
                       </tr>
                     );
-                  })}
+                  }) : (
+                    <div className="empty-msg">There doesn't seem to be anything here...</div>
+                  )}
               </tbody>
             </Table>
           </Col>

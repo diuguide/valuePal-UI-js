@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {
   walletState,
-  updateHoldingsTableFunc,
-  getUserData,
   userHoldings,
 } from "../../slice/wallet/walletSlice";
 import { caluculateChange } from "../../utilities/stockData";
@@ -19,14 +17,8 @@ const HoldingsTable = () => {
   };
 
   useEffect(() => {
-    console.log("holdings table render!");
     getHoldings();
   }, []);
-
-  const updateHoldingsTableButton = () => {
-    dispatch(updateHoldingsTableFunc());
-    dispatch(getUserData(localStorage.getItem("authorization")));
-  };
 
   const rowStyle = {
     ticker: {
@@ -66,7 +58,7 @@ const HoldingsTable = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {walletData.wallet.holdings &&
+                  {walletData.wallet.holdings ?
                     walletData.wallet.holdings.map((ticker, index) => {
                       return (
                         <tr key={index}>
@@ -88,14 +80,11 @@ const HoldingsTable = () => {
                           </td>
                         </tr>
                       );
-                    })}
+                    }) : (
+                      <div className="empty-msg">There doesn't seem to be anything here...</div>
+                    )}
                 </tbody>
               </Table>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <button onClick={updateHoldingsTableButton}>Update</button>
             </Col>
           </Row>
         </>

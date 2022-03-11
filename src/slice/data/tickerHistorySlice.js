@@ -11,7 +11,7 @@ export const yahooTickerHistory = createAsyncThunk(
         ticker.range,
         ticker.ticker
       );
-      console.log("response ticker history: ", response);
+      
       return { response, ticker };
     } catch (err) {
       console.error(err);

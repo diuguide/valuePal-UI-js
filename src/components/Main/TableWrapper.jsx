@@ -14,7 +14,6 @@ const TableWrapper = () => {
       case "order":
         return <OrdersTable />;
       case "analytics":
-        console.log("analytics fired!");
         break;
       default:
         return <HoldingsTable />;

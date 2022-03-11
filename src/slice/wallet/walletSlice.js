@@ -36,7 +36,6 @@ export const userHoldings = createAsyncThunk(
 
 export const buyStockOrder = createAsyncThunk("buyStock", async (order) => {
   const response = await purchaseOrder(order.token, order.buyOrder);
-  console.log("Response buystockorder: ", response);
   return response;
 });
 
@@ -176,7 +175,6 @@ export const walletSlice = createSlice({
         state.holding.isLoaded = false;
       })
       .addCase(userHoldings.fulfilled, (state, action) => {
-        console.log("action.payload HOLDINGS: ", action.payload);
         if (action.payload.status === 200) {
           state.holding.isLoading = false;
           state.holding.isLoaded = true;

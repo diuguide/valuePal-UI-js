@@ -13,9 +13,7 @@ const SellPanel = () => {
     quantity: 0,
     price: 0,
   });
-
   
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSellOrder({ ...sellOrder, [name]: value });

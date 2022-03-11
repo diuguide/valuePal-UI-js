@@ -6,7 +6,6 @@ export const yahooTickerSearch = createAsyncThunk(
   async (ticker) => {
     try {
       const response = await tickerData(ticker);
-      console.log("response ticker search: ", response);
       return { response, ticker };
     } catch (err) {
       console.error("Error ticker search: ", err);
