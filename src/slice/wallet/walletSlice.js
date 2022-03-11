@@ -5,7 +5,7 @@ import {
   sellHoldingOrder,
   updateHoldings,
   getUserOrders,
-  getUserHoldings
+  getUserHoldings,
 } from "../../utilities/wallet";
 
 export const getUserData = createAsyncThunk("getUserData", async (token) => {
@@ -26,14 +26,17 @@ export const userOrders = createAsyncThunk("getUserOrders", async (token) => {
   return response;
 });
 
-export const userHoldings = createAsyncThunk("getUserHoldings", async (token) => {
-  const response = await getUserHoldings(token);
-  return response;
-});
+export const userHoldings = createAsyncThunk(
+  "getUserHoldings",
+  async (token) => {
+    const response = await getUserHoldings(token);
+    return response;
+  }
+);
 
 export const buyStockOrder = createAsyncThunk("buyStock", async (order) => {
   const response = await purchaseOrder(order.token, order.buyOrder);
-  console.log("Response buystockorder: ", response)
+  console.log("Response buystockorder: ", response);
   return response;
 });
 
@@ -62,13 +65,21 @@ const initialState = {
   order: {
     isLoading: false,
     isLoaded: false,
-    orders: {}
+    orders: {},
+    msg: {
+      message: "",
+      showMsg: false,
+    },
   },
   holding: {
     isLoading: false,
     isLoaded: false,
-    holdings: {}
-  }
+    holdings: {},
+    msg: {
+      message: "",
+      showMsg: false,
+    },
+  },
 };
 
 export const walletSlice = createSlice({
@@ -158,10 +169,18 @@ export const walletSlice = createSlice({
         state.holding.isLoaded = false;
       })
       .addCase(userHoldings.fulfilled, (state, action) => {
-        state.holding.isLoading = false;
-        state.holding.isLoaded = true;
-        state.holding.holdings = action.payload;
-      })
+        console.log("action.payload HOLDINGS: ", action.payload);
+        if (action.payload.status === 200) {
+          state.holding.isLoading = false;
+          state.holding.isLoaded = true;
+          state.holding.holdings = action.payload;
+        } else if (action.payload.status === 400) {
+          state.holding.isLoading = false;
+          state.holding.isLoaded = true;
+          state.holding.msg.message = action.payload.data;
+          state.holding.msg.showMsg = true;
+        }
+      });
   },
 });
 
