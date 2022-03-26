@@ -147,9 +147,10 @@ export const walletSlice = createSlice({
         state.isLoaded = false;
       })
       .addCase(getUserData.fulfilled, (state, action) => {
+        console.log("getUserData: inside walletSlice: ", action.payload);
         state.isLoading = false;
         state.isLoaded = true;
-        state.wallet = action.payload.wallet;
+        state.wallet = action.payload.holdings;
         state.user.username = action.payload.username;
         state.user.firstName = action.payload.firstName;
         state.user.email = action.payload.email;

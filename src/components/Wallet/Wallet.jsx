@@ -22,25 +22,22 @@ const Wallet = () => {
     },
   };
 
-  let sum = walletData.wallet.totalValue + walletData.wallet.totalCash;
-
   return (
     <Row style={styling.container} className="bg-dark mt-2">
       <Col className="d-flex">
         <div style={styling.font}>Cash: </div>
         <div style={styling.value}>
-          {walletData.wallet.totalCash?.toFixed(2)}
         </div>
       </Col>
       <Col className="d-flex">
         <div style={styling.font}>Assets: </div>
         <div style={styling.value}>
-          {walletData.wallet.totalValue?.toFixed(2)}
+          
         </div>
       </Col>
       <Col className="d-flex">
         <div style={styling.font}>Value: </div>
-        <div style={styling.value}>{sum.toFixed(2) || null}</div>
+        <div style={styling.value}></div>
       </Col>
     </Row>
   );
