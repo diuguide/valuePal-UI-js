@@ -58,26 +58,12 @@ const HoldingsTable = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {walletData.wallet.holdings ?
-                    walletData.wallet.holdings.map((ticker, index) => {
+                  {walletData.wallet ?
+                    walletData.wallet.map((ticker, index) => {
                       return (
                         <tr key={index}>
                           <td style={rowStyle.ticker}>{ticker.ticker}</td>
                           <td style={rowStyle.quantity}>{ticker.quantity}</td>
-                          <td style={rowStyle.price}>
-                            ${ticker.price.toFixed(2)}
-                          </td>
-                          <td style={rowStyle.avg_price}>
-                            {ticker.avg_price
-                              ? "$" + ticker.avg_price.toFixed(2)
-                              : null}
-                          </td>
-                          <td style={rowStyle.change} id="change">
-                            {caluculateChange(ticker.price, ticker.avg_price)}
-                          </td>
-                          <td style={rowStyle.totalValue}>
-                            {ticker.totalValue.toFixed(2)}
-                          </td>
                         </tr>
                       );
                     }) : (

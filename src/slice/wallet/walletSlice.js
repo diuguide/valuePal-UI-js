@@ -6,11 +6,13 @@ import {
   updateHoldings,
   getUserOrders,
   getUserHoldings,
+  getUserCash
 } from "../../utilities/wallet";
 
 export const getUserData = createAsyncThunk("getUserData", async (token) => {
   const response = await userData(token);
-  return response;
+  const resCash = await getUserCash(token);
+  return { response, resCash };
 });
 
 export const updateHoldingsTableFunc = createAsyncThunk(
@@ -60,6 +62,7 @@ const initialState = {
     username: "",
     firstName: "",
     email: "",
+    totalCash:0
   },
   order: {
     isLoading: false,
@@ -147,13 +150,13 @@ export const walletSlice = createSlice({
         state.isLoaded = false;
       })
       .addCase(getUserData.fulfilled, (state, action) => {
-        console.log("getUserData: inside walletSlice: ", action.payload);
+        console.log("getUserData: inside walletSlice.resCASH: ", action.payload.resCash);
         state.isLoading = false;
         state.isLoaded = true;
-        state.wallet = action.payload.holdings;
-        state.user.username = action.payload.username;
-        state.user.firstName = action.payload.firstName;
-        state.user.email = action.payload.email;
+        state.wallet = action.payload.response.holdings;
+        state.user.username = action.payload.response.username;
+        state.user.firstName = action.payload.response.firstName;
+        state.user.email = action.payload.response.email;
       })
       .addCase(userOrders.pending, (state) => {
         state.order.isLoading = true;

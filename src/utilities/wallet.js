@@ -29,6 +29,23 @@ export const getUserHoldings = async (token) => {
   }
 };
 
+export const getUserCash = async (token) => {
+  let headers = {
+    Authorization: token,
+  };
+  try {
+    let response = await authClient.get("/users/getUserCash", { headers });
+    console.log("response get cash: ", response);
+    return response;
+    
+  } catch (err) {
+    console.log("response error: ", err.response);
+    return err.response;
+  }
+};
+
+
+
 export const purchaseOrder = async (token, order) => {
   let headers = {
     Authorization: token,
