@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { userData } from "../../utilities/auth";
+import { tickerData } from "../../utilities/stockData";
 import {
   purchaseOrder,
   sellHoldingOrder,
@@ -32,9 +33,18 @@ export const userHoldings = createAsyncThunk(
   "getUserHoldings",
   async (token) => {
     const response = await getUserHoldings(token);
-    return response;
+    return updatePrices(response);
   }
 );
+
+const updatePrices = async (response) => {
+  let temp = [];
+  response.data.forEach((el) => {
+    temp.push(el.ticker);
+  });
+  let responseCall = await tickerData(temp);
+  return responseCall;
+} 
 
 export const buyStockOrder = createAsyncThunk("buyStock", async (order) => {
   const response = await purchaseOrder(order.token, order.buyOrder);
@@ -62,7 +72,8 @@ const initialState = {
     username: "",
     firstName: "",
     email: "",
-    totalCash:0
+    totalCash:0,
+    assetValue:0
   },
   order: {
     isLoading: false,

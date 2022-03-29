@@ -22,18 +22,32 @@ const Wallet = () => {
     },
   };
 
+  const calculateTotalAssetValue = () => {
+    console.log("walletData.holdings: ", walletData.holding.holdings);
+    console.log("walletData.wallet: ", walletData.wallet);
+    if (walletData.wallet.length > 0 && walletData.wallet != null) {
+      walletData.wallet.forEach((el) => {
+        console.log(el);
+        console.log(
+          "filter result",
+          walletData.holding.holdings.filter((elm) => elm.symbol == el.ticker)
+        );
+        let thing = walletData.holding.holdings.filter((elm) => elm.symbol == el.ticker);
+        console.log("thing:", thing);
+       
+      });
+    }
+  };
+
   return (
     <Row style={styling.container} className="bg-dark mt-2">
       <Col className="d-flex">
         <div style={styling.font}>Cash: </div>
-        <div style={styling.value}>
-        </div>
+        <div style={styling.value}>{walletData.user.totalCash.toFixed(2)}</div>
       </Col>
       <Col className="d-flex">
         <div style={styling.font}>Assets: </div>
-        <div style={styling.value}>
-          
-        </div>
+        <div style={styling.value}>{calculateTotalAssetValue()}</div>
       </Col>
       <Col className="d-flex">
         <div style={styling.font}>Value: </div>
