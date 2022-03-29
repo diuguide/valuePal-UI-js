@@ -58,7 +58,7 @@ const HoldingsTable = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {walletData.wallet ?
+                  {walletData.wallet.length > 0 ?
                     walletData.wallet.map((ticker, index) => {
                       return (
                         <tr key={index}>
