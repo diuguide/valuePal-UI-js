@@ -38,7 +38,7 @@ const Wallet = () => {
       </Col>
       <Col className="d-flex">
         <div style={styling.font}>Assets: </div>
-        <div style={styling.value}>{calculateTotalAssetValue()}</div>
+        <div style={styling.value}>{(calculateTotalAssetValue()).toFixed(2)}</div>
       </Col>
       <Col className="d-flex">
         <div style={styling.font}>Value: </div>
