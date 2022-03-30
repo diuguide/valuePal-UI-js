@@ -23,20 +23,11 @@ const Wallet = () => {
   };
 
   const calculateTotalAssetValue = () => {
-    console.log("walletData.holdings: ", walletData.holding.holdings);
-    console.log("walletData.wallet: ", walletData.wallet);
-    if (walletData.wallet.length > 0 && walletData.wallet != null) {
-      walletData.wallet.forEach((el) => {
-        console.log(el);
-        console.log(
-          "filter result",
-          walletData.holding.holdings.filter((elm) => elm.symbol == el.ticker)
-        );
-        let thing = walletData.holding.holdings.filter((elm) => elm.symbol == el.ticker);
-        console.log("thing:", thing);
-       
-      });
-    }
+    let totalValue = 0;
+    walletData.holding.holdings.forEach((el) => {
+      totalValue += el.price * el.quantity;
+    });
+    return totalValue;
   };
 
   return (
@@ -51,7 +42,7 @@ const Wallet = () => {
       </Col>
       <Col className="d-flex">
         <div style={styling.font}>Value: </div>
-        <div style={styling.value}></div>
+        <div style={styling.value}>{(walletData.user.totalCash + calculateTotalAssetValue()).toFixed(2)}</div>
       </Col>
     </Row>
   );

@@ -47,7 +47,7 @@ const HoldingsTable = () => {
                 <thead>
                   <tr>
                     <th>Ticker</th>
-                    {/* <th>Quantity</th> */}
+                    <th>Quantity</th>
                     <th>Current Price</th>
                     <th>Purchase Price (Avg)</th>
                     <th>Change</th>
@@ -60,11 +60,11 @@ const HoldingsTable = () => {
                       console.log("ticker inside map : ", ticker);
                       return (
                         <tr key={index}>
-                          <td style={rowStyle.ticker}>{ticker.symbol}</td>
-                          {/* <td style={rowStyle.quantity}>{walletData.wallet[index].quantity}</td> */}
+                          <td style={rowStyle.ticker}>{ticker.ticker}</td>
+                          <td style={rowStyle.quantity}>{ticker.quantity}</td>
                           <td style={rowStyle.price}>{ticker.price.toFixed(2)}</td>
                           <td style={rowStyle.avg_price}>{"..."}</td>
-                          <td style={rowStyle.change}>{ticker.changePercent.toFixed(2)}</td>
+                          <td style={rowStyle.change}>{ticker.changePercent}</td>
                           <td style={rowStyle.totalValue}>{(ticker.price * walletData.wallet[index].quantity).toFixed(2)}</td>
                         </tr>
                       );

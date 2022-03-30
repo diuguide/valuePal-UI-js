@@ -7,7 +7,8 @@ import {
   updateHoldings,
   getUserOrders,
   getUserHoldings,
-  getUserCash
+  getUserCash,
+  createHoldingRow
 } from "../../utilities/wallet";
 
 export const getUserData = createAsyncThunk("getUserData", async (token) => {
@@ -33,7 +34,8 @@ export const userHoldings = createAsyncThunk(
   "getUserHoldings",
   async (token) => {
     const response = await getUserHoldings(token);
-    return updatePrices(response);
+    const responseCall = await updatePrices(response);
+    return createHoldingRow(response, responseCall);
   }
 );
 
@@ -87,7 +89,7 @@ const initialState = {
   holding: {
     isLoading: false,
     isLoaded: false,
-    holdings: {},
+    holdings: [],
     msg: {
       message: "",
       showMsg: false,
@@ -190,11 +192,12 @@ export const walletSlice = createSlice({
         state.holding.isLoaded = false;
       })
       .addCase(userHoldings.fulfilled, (state, action) => {
-        if (action.payload.status === 200) {
+        console.log("inside UserHoldings.wallet.js : ", action.payload );
+        if (action.payload.length > 0) {
           state.holding.isLoading = false;
           state.holding.isLoaded = true;
-          state.holding.holdings = action.payload.data;
-        } else if (action.payload.status === 400) {
+          state.holding.holdings = action.payload;
+        } else {
           state.holding.isLoading = false;
           state.holding.isLoaded = true;
           state.holding.msg.message = action.payload.data;
