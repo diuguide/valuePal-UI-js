@@ -1,6 +1,7 @@
 import { Row, Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { walletState } from "../../slice/wallet/walletSlice";
+import Loader from "../Loader/Loader";
 
 const Wallet = () => {
   const walletData = useSelector(walletState);
@@ -31,20 +32,34 @@ const Wallet = () => {
   };
 
   return (
-    <Row style={styling.container} className="bg-dark mt-2">
-      <Col className="d-flex">
-        <div style={styling.font}>Cash: </div>
-        <div style={styling.value}>{walletData.user.totalCash.toFixed(2)}</div>
-      </Col>
-      <Col className="d-flex">
-        <div style={styling.font}>Assets: </div>
-        <div style={styling.value}>{(calculateTotalAssetValue()).toFixed(2)}</div>
-      </Col>
-      <Col className="d-flex">
-        <div style={styling.font}>Value: </div>
-        <div style={styling.value}>{(walletData.user.totalCash + calculateTotalAssetValue()).toFixed(2)}</div>
-      </Col>
-    </Row>
+    <>
+      {walletData.isLoaded ? (
+        <Row style={styling.container} className="bg-dark mt-2">
+          <Col className="d-flex">
+            <div style={styling.font}>Cash: </div>
+            <div style={styling.value}>
+              {walletData.user.totalCash.toFixed(2)}
+            </div>
+          </Col>
+          <Col className="d-flex">
+            <div style={styling.font}>Assets: </div>
+            <div style={styling.value}>
+              {calculateTotalAssetValue().toFixed(2)}
+            </div>
+          </Col>
+          <Col className="d-flex">
+            <div style={styling.font}>Value: </div>
+            <div style={styling.value}>
+              {(walletData.user.totalCash + calculateTotalAssetValue()).toFixed(
+                2
+              )}
+            </div>
+          </Col>
+        </Row>
+      ) : (
+        <Loader />
+      )}
+    </>
   );
 };
 

@@ -35,10 +35,8 @@ export const getUserCash = async (token) => {
   };
   try {
     let response = await authClient.get("/users/getUserCash", { headers });
-    console.log("response get cash: ", response);
     return response;
   } catch (err) {
-    console.log("response error: ", err.response);
     return err.response;
   }
 };
@@ -83,7 +81,6 @@ export const createHoldingRow = (response, responseCall) => {
       let filteredResult = responseCall.data.filter(
         (elm) => elm.symbol == el.ticker
       );
-      console.log("FilteredResult: ", filteredResult);
       rowObject.wallet_id = el.wallet_id;
       rowObject.holding_id = el.id;
       rowObject.ticker = el.ticker;
@@ -101,6 +98,5 @@ export const createHoldingRow = (response, responseCall) => {
       };
     });
   }
-  console.log("responseEntity: ", responseEntity);
   return responseEntity;
 };
