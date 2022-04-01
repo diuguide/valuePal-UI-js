@@ -2,7 +2,6 @@ import { Row, Col, Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { walletState, userHoldings } from "../../slice/wallet/walletSlice";
-import { caluculateChange } from "../../utilities/stockData";
 import Loader from "../Loader/Loader";
 
 const HoldingsTable = () => {
