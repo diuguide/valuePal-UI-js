@@ -66,7 +66,7 @@ export const sellHoldingOrder = async (token, order) => {
   }
 };
 
-const getAvgPrice = (token, ticker) => {
+const getAvgPrice = async (token, ticker) => {
 
   let headers = {
     Authorization: token,
@@ -78,7 +78,7 @@ const getAvgPrice = (token, ticker) => {
   } catch (err) {
     return err.response;
   }
-  
+
 }
 
 export const createHoldingRow = (response, responseCall) => {
