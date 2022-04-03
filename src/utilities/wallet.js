@@ -66,6 +66,21 @@ export const sellHoldingOrder = async (token, order) => {
   }
 };
 
+const getAvgPrice = (token, ticker) => {
+
+  let headers = {
+    Authorization: token,
+  };
+  let response;
+  try {
+    response = await authClient.post("/stock/avgPrice", ticker, { headers });
+    return response.data.avgPrice;
+  } catch (err) {
+    return err.response;
+  }
+  
+}
+
 export const createHoldingRow = (response, responseCall) => {
   let rowObject = {
     wallet_id: 0,
