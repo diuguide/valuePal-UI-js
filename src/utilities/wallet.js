@@ -66,7 +66,25 @@ export const sellHoldingOrder = async (token, order) => {
   }
 };
 
+export const getAvgPrice = async (token, ticker) => {
+  console.log("aveprivefired", token);
+  let headers = {
+    Authorization: token,
+  };
+  let response;
+  try {
+    response = await authClient.post("/stock/avgPrice", ticker, { headers });
+    console.log("response: ", response);
+    return response.data.avgPrice;
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+
+}
+
 export const createHoldingRow = (response, responseCall) => {
+
   let rowObject = {
     wallet_id: 0,
     holding_id: 0,
@@ -76,6 +94,9 @@ export const createHoldingRow = (response, responseCall) => {
     quantity: 0,
   };
   let responseEntity = [];
+console.log("fired fired", response.config.headers.Authorization);
+  console.log(getAvgPrice(response.config.headers.Authorization, 'GME'));
+
   if (response != null && responseCall != null) {
     response.data.forEach((el) => {
       let filteredResult = responseCall.data.filter(
