@@ -66,25 +66,38 @@ export const sellHoldingOrder = async (token, order) => {
   }
 };
 
-export const getAvgPrice = async (token, ticker) => {
-  console.log("aveprivefired", token);
+export const getAvgPrice = (token, ticker) => {
+  
   let headers = {
     Authorization: token,
   };
-  let response;
-  try {
-    response = await authClient.post("/stock/avgPrice", ticker, { headers });
-    console.log("response: ", response);
-    return response.data.avgPrice;
-  } catch (err) {
-    console.log(err);
-    return err.response;
-  }
 
-}
+  authClient
+    .post("/stock/avgPrice", ticker, { headers })
+    .then((res) => {
+      console.log("response: ", res);
+      return res.data;
+    })
+    .catch((err) => console.log("THIS ERROR: ", err));
+};
+
+export const addAvgPrice = (token, resArray) => {
+  let newArray = [];
+  resArray.forEach((each) => {
+    console.log("getAvgPrice: ", getAvgPrice(token, each.ticker));
+    // getAvgPrice(token, each.ticker).then((res) => {
+    //   console.log("res inside function: ", res);
+    //   each = { ...each, avgPrice: res };
+    //   console.log("each elemeng: ", each);
+    //   newArray.push(each);
+    // });
+  });
+
+  return newArray;
+};
 
 export const createHoldingRow = (response, responseCall) => {
-
+  let token = response.config.headers.Authorization;
   let rowObject = {
     wallet_id: 0,
     holding_id: 0,
@@ -92,11 +105,9 @@ export const createHoldingRow = (response, responseCall) => {
     longName: "",
     price: 0,
     quantity: 0,
+    avgPrice: 0,
   };
   let responseEntity = [];
-console.log("fired fired", response.config.headers.Authorization);
-  console.log(getAvgPrice(response.config.headers.Authorization, 'GME'));
-
   if (response != null && responseCall != null) {
     response.data.forEach((el) => {
       let filteredResult = responseCall.data.filter(
@@ -116,8 +127,10 @@ console.log("fired fired", response.config.headers.Authorization);
         longName: "",
         price: 0,
         quantity: 0,
+        avgPrice: 0,
       };
     });
   }
+  
   return responseEntity;
 };
