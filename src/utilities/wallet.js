@@ -66,21 +66,34 @@ export const sellHoldingOrder = async (token, order) => {
   }
 };
 
-export const getAvgPrice = async (token, ticker) => {
-  console.log("aveprivefired", token);
-  console.log("ticker: ", ticker);
+export const getAvgPrice = (token, ticker) => {
+  
   let headers = {
     Authorization: token,
   };
-  let response;
-  try {
-    response = await authClient.post("/stock/avgPrice", ticker, { headers });
-    console.log("response: ", response);
-    return response.data.avgPrice;
-  } catch (err) {
-    console.log(err);
-    return err.response;
-  }
+
+  authClient
+    .post("/stock/avgPrice", ticker, { headers })
+    .then((res) => {
+      console.log("response: ", res);
+      return res.data;
+    })
+    .catch((err) => console.log("THIS ERROR: ", err));
+};
+
+export const addAvgPrice = (token, resArray) => {
+  let newArray = [];
+  resArray.forEach((each) => {
+    console.log("getAvgPrice: ", getAvgPrice(token, each.ticker));
+    // getAvgPrice(token, each.ticker).then((res) => {
+    //   console.log("res inside function: ", res);
+    //   each = { ...each, avgPrice: res };
+    //   console.log("each elemeng: ", each);
+    //   newArray.push(each);
+    // });
+  });
+
+  return newArray;
 };
 
 export const createHoldingRow = (response, responseCall) => {
@@ -92,17 +105,14 @@ export const createHoldingRow = (response, responseCall) => {
     longName: "",
     price: 0,
     quantity: 0,
+    avgPrice: 0,
   };
   let responseEntity = [];
-  console.log("fired fired", token);
-  
-
   if (response != null && responseCall != null) {
     response.data.forEach((el) => {
       let filteredResult = responseCall.data.filter(
         (elm) => elm.symbol == el.ticker
       );
-      console.log(getAvgPrice(token, el.ticker));
       rowObject.wallet_id = el.wallet_id;
       rowObject.holding_id = el.id;
       rowObject.ticker = el.ticker;
@@ -117,8 +127,10 @@ export const createHoldingRow = (response, responseCall) => {
         longName: "",
         price: 0,
         quantity: 0,
+        avgPrice: 0,
       };
     });
   }
+  
   return responseEntity;
 };
