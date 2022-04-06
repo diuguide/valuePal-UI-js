@@ -84,13 +84,11 @@ export const getAvgPrice = (token, ticker) => {
 export const addAvgPrice = (token, resArray) => {
   let newArray = [];
   resArray.forEach((each) => {
-    console.log("getAvgPrice: ", getAvgPrice(token, each.ticker));
-    // getAvgPrice(token, each.ticker).then((res) => {
-    //   console.log("res inside function: ", res);
-    //   each = { ...each, avgPrice: res };
-    //   console.log("each elemeng: ", each);
-    //   newArray.push(each);
-    // });
+    
+    getAvgPrice(token, each.ticker).then((res) => {
+      console.log("res inside function: ", res);
+    
+    });
   });
 
   return newArray;
@@ -98,6 +96,7 @@ export const addAvgPrice = (token, resArray) => {
 
 export const createHoldingRow = (response, responseCall) => {
   let token = response.config.headers.Authorization;
+
   let rowObject = {
     wallet_id: 0,
     holding_id: 0,
@@ -110,6 +109,7 @@ export const createHoldingRow = (response, responseCall) => {
   let responseEntity = [];
   if (response != null && responseCall != null) {
     response.data.forEach((el) => {
+      getAvgPrice(token, el.ticker);
       let filteredResult = responseCall.data.filter(
         (elm) => elm.symbol == el.ticker
       );
