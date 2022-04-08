@@ -95,12 +95,6 @@ export const addAvgPrice = (token, resArray) => {
 };
 
 export const createHoldingRow = (response, responseCall) => {
-
-  console.log("response: ", response);
-  console.log("responseCall: ", responseCall);
-
-  let token = response.config.headers.Authorization;
-
   let rowObject = {
     wallet_id: 0,
     holding_id: 0,
@@ -113,7 +107,6 @@ export const createHoldingRow = (response, responseCall) => {
   let responseEntity = [];
   if (response != null && responseCall != null) {
     response.data.forEach((el) => {
-      getAvgPrice(token, el.ticker);
       let filteredResult = responseCall.data.filter(
         (elm) => elm.symbol == el.ticker
       );
