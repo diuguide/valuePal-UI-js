@@ -28,7 +28,7 @@ const HoldingsTable = () => {
     price: {},
     avg_price: {},
     change: {
-      color: "green",
+      
       fontWeight: 900,
     },
     totalValue: {
