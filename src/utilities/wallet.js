@@ -95,6 +95,10 @@ export const addAvgPrice = (token, resArray) => {
 };
 
 export const createHoldingRow = (response, responseCall) => {
+
+  console.log("response: ", response);
+  console.log("responseCall: ", responseCall);
+
   let token = response.config.headers.Authorization;
 
   let rowObject = {
@@ -119,6 +123,7 @@ export const createHoldingRow = (response, responseCall) => {
       rowObject.longName = filteredResult[0].longName;
       rowObject.price = filteredResult[0].price;
       rowObject.quantity = el.quantity;
+      rowObject.avgPrice = el.avgPrice;
       responseEntity.push(rowObject);
       rowObject = {
         wallet_id: 0,

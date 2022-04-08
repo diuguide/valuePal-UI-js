@@ -61,8 +61,8 @@ const HoldingsTable = () => {
                           <td style={rowStyle.ticker}>{ticker.ticker}</td>
                           <td style={rowStyle.quantity}>{ticker.quantity}</td>
                           <td style={rowStyle.price}>{ticker.price.toFixed(2)}</td>
-                          <td style={rowStyle.avg_price}>{"..."}</td>
-                          <td style={rowStyle.change}>{ticker.changePercent}</td>
+                          <td style={rowStyle.avg_price}>{ticker.avgPrice.toFixed(2)}</td>
+                          <td style={rowStyle.change}>{(ticker.price - ticker.avgPrice).toFixed(2)}</td>
                           <td style={rowStyle.totalValue}>{(ticker.price * ticker.quantity).toFixed(2)}</td>
                         </tr>
                       );
