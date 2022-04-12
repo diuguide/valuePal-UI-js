@@ -22,7 +22,7 @@ const HoldingsTable = () => {
       justifyContent: "center",
       alignContent: "center",
       fontWeight: 900,
-      fontSize: "32px",
+      fontSize: "32px"
     },
     quantity: {},
     price: {},
@@ -40,7 +40,6 @@ const HoldingsTable = () => {
         justifyContent: "space-around"
       },
       left: {
-        marginTop: "10px",
         display: "block",
       },
       right: {
@@ -53,7 +52,7 @@ const HoldingsTable = () => {
         color: price - avgPrice >= 0 ? "green" : "red",
       },
       arrow: {
-        fontSize: "56px",
+        fontSize: "30px",
         fontWeight: "900",
         color: price - avgPrice <= 0 ? "red" : "green",
       },
