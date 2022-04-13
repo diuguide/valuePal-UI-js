@@ -23,14 +23,7 @@ const HoldingsTable = () => {
       alignContent: "center",
       fontWeight: 900,
       fontSize: "32px"
-    },
-    quantity: {},
-    price: {},
-    avg_price: {},
-    change: {},
-    totalValue: {
-      fontSize: "32px",
-    },
+    }
   };
 
   const ChangeCell = ({ price, avgPrice }) => {
@@ -80,6 +73,53 @@ const HoldingsTable = () => {
     );
   };
 
+  const TotalCell = ({ticker}) => {
+    const style = {
+      container: {
+        display: "flex",
+        justifyContent: "space-around"
+      },
+      left: {
+        display: "block",
+      },
+      right: {
+        display: "block",
+      },
+      dollar: {
+        color: ticker.price - ticker.avgPrice >= 0 ? "green" : "red",
+      },
+      percentage: {
+        color: ticker.price - ticker.avgPrice >= 0 ? "green" : "red",
+      },
+      arrow: {
+        fontSize: "30px",
+        fontWeight: "900",
+        color: ticker.price - ticker.avgPrice <= 0 ? "red" : "green",
+      },
+    };
+    return (
+      <>
+        <div style={style.container}>
+          <div style={style.left}>
+            <div style={style.dollar}>$ {(ticker.price * ticker.quantity).toFixed(2)}</div>
+            <div style={style.percentage}>
+              ${((ticker.price * ticker.quantity) - (ticker.avgPrice * ticker.quantity)).toFixed(2)}
+            </div>
+          </div>
+          <div style={style.right}>
+          <div style={style.arrow}>
+            {ticker.price - ticker.avgPrice <= 0 ? (
+              <div>&#8595;</div>
+            ) : (
+              <div>&#8593;</div>
+            )}
+          </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       {walletData.holding.isLoaded ? (
@@ -118,7 +158,7 @@ const HoldingsTable = () => {
                           </td>
                           {/* <td style={rowStyle.change}>{(ticker.price - ticker.avgPrice).toFixed(2)}</td> */}
                           <td style={rowStyle.totalValue}>
-                            {(ticker.price * ticker.quantity).toFixed(2)}
+                            <TotalCell ticker={ticker}/>
                           </td>
                         </tr>
                       );
