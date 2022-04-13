@@ -75,7 +75,7 @@ export const getAvgPrice = (token, ticker) => {
   authClient
     .post("/stock/avgPrice", ticker, { headers })
     .then((res) => {
-      console.log("response: ", res);
+     
       return res.data;
     })
     .catch((err) => console.log("THIS ERROR: ", err));
@@ -86,7 +86,7 @@ export const addAvgPrice = (token, resArray) => {
   resArray.forEach((each) => {
     
     getAvgPrice(token, each.ticker).then((res) => {
-      console.log("res inside function: ", res);
+      
     
     });
   });

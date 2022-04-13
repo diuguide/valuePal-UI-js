@@ -16,7 +16,7 @@ const OrdersTable = () => {
 
   const procTimeStamp = (timestamp) => {
     let temp = timestamp.split('T');
-    console.log("split timestamp: ", temp);
+    
     let temp2 = temp[1].split('.');
     return temp[0] + " " +  temp2[0] + " EST";
   }
