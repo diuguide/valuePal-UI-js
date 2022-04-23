@@ -25,6 +25,13 @@ const OrdersTable = () => {
     getOrders();
   }, []);
 
+  const rowStyle = {
+    fontSize: "12px",
+    ticker : {
+      fontSize: "20px"
+    }
+  }
+
   return (
     <>
       {order.order.isLoaded ? (
@@ -47,13 +54,13 @@ const OrdersTable = () => {
                   order.order.orders.map((order, index) => {
                     
                     return (
-                      <tr key={index}>
-                        <td>{procTimeStamp(order.timestamp)}</td>
-                        <td>{order.orderType}</td>
-                        <td>{order.ticker}</td>
+                      <tr style={rowStyle} key={index}>
+                        <td >{procTimeStamp(order.timestamp)}</td>
+                        <td>{order.orderType == 'B' ? "Buy" : "Sell"}</td>
+                        <td style={rowStyle.ticker}>{order.ticker}</td>
                         <td>{order.price.toFixed(2)}</td>
                         <td>{order.quantity}</td>
-                        <td>{order.totalValue.toFixed(2)}</td>
+                        <td>${order.totalValue.toFixed(2)}</td>
                         <td>{order.status}</td>
                       </tr>
                     );
