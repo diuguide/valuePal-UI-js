@@ -26,7 +26,7 @@ const OrdersTable = () => {
   }, []);
 
   const rowStyle = {
-    fontSize: "12px",
+    fontSize: "10px",
     ticker : {
       fontSize: "20px"
     }
