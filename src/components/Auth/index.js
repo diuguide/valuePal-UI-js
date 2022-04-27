@@ -48,11 +48,11 @@ const Register = () => {
 
   const style = {
     welcome: {
-      fontSize: "18px",
+      fontSize: "20px",
       borderBottom: "1px solid black"
     },
     description: {
-      fontSize:"12px",
+      fontSize:"16px",
       textAlign: "center"
     }
   };
@@ -141,7 +141,10 @@ const Register = () => {
               In ValuePal, we do not use real money, if you run out of money...just make another account.
               In future developement, there will be a central bank and other features similiar to a real stock market!
               Please leave a message with the application via Github if you interested in helping out or find a bug.  
-              Hope you make tons of fake money!
+              
+            </div>
+            <div className="mt-2" style={style.description}>
+              IF you do have an account, Login above! Hope you make tons of fake money!
             </div>
           </Col>
         </Row>
