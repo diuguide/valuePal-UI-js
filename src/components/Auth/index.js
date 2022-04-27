@@ -46,6 +46,17 @@ const Register = () => {
       });
   };
 
+  const style = {
+    welcome: {
+      fontSize: "18px",
+      borderBottom: "1px solid black"
+    },
+    description: {
+      fontSize:"12px",
+      textAlign: "center"
+    }
+  };
+
   return (
     <Row className="d-flex">
       <Col className="col-md-6 col-lg-6 col-sm-9">
@@ -95,6 +106,45 @@ const Register = () => {
             Register
           </Button>
         </Form>
+      </Col>
+      <Col>
+        <Row>
+          <Col>
+            <div className="mt-2" style={style.welcome}>
+              Welcome to ValuePal, a virtual trading platform!
+            </div>
+            <div className="mt-2" style={style.description}>
+              If you do not have an account, please sign up! ValuePal is a virtual stock trading platform
+              that utilizes real-time stock data. User may Buy, Sell, Explore
+              Stocks available in all US markets. ValuePal is a work in
+              progress, you can find the repository{" "}
+              <span>
+                <a
+                  href="https://github.com/diuguide/valuePal-UI-js"
+                  target="_blank"
+                >
+                  here
+                </a>
+              </span>{" "}
+              for the front end UI, and{" "}
+              <span>
+                <a
+                  href="https://github.com/diuguide/valuePal-java"
+                  target="blank"
+                >
+                  here
+                </a>
+              </span>
+              {" "}for the backend. Any and all contributions are welcome!
+            </div>
+            <div className="mt-2" style={style.description}>
+              In ValuePal, we do not use real money, if you run out of money...just make another account.
+              In future developement, there will be a central bank and other features similiar to a real stock market!
+              Please leave a message with the application via Github if you interested in helping out or find a bug.  
+              Hope you make tons of fake money!
+            </div>
+          </Col>
+        </Row>
       </Col>
     </Row>
   );
