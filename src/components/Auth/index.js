@@ -58,7 +58,7 @@ const Register = () => {
   };
 
   return (
-    <Row className="d-flex">
+    <Row className="d-flex bg-light">
       <Col className="col-md-6 col-lg-6 col-sm-9">
         <Form>
           <Form.Group className="m-2">
