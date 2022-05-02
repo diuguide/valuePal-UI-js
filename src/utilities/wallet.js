@@ -67,7 +67,6 @@ export const sellHoldingOrder = async (token, order) => {
 };
 
 export const getAvgPrice = (token, ticker) => {
-  
   let headers = {
     Authorization: token,
   };
@@ -75,7 +74,6 @@ export const getAvgPrice = (token, ticker) => {
   authClient
     .post("/stock/avgPrice", ticker, { headers })
     .then((res) => {
-     
       return res.data;
     })
     .catch((err) => console.log("THIS ERROR: ", err));
@@ -84,11 +82,7 @@ export const getAvgPrice = (token, ticker) => {
 export const addAvgPrice = (token, resArray) => {
   let newArray = [];
   resArray.forEach((each) => {
-    
-    getAvgPrice(token, each.ticker).then((res) => {
-      
-    
-    });
+    getAvgPrice(token, each.ticker).then((res) => {});
   });
 
   return newArray;
@@ -129,6 +123,15 @@ export const createHoldingRow = (response, responseCall) => {
       };
     });
   }
-  
+
   return responseEntity;
+};
+
+export const getAutoComplete = (input) => {
+  authClient
+    .get(`/calls/autoComplete?input=${input}`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => console.log(err));
 };
