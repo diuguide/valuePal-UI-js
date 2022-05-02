@@ -11,6 +11,7 @@ import {
   showMessage,
   hideMessage,
 } from "../../slice/error/errorSlice";
+import { getAutoComplete } from "../../utilities/wallet";
 
 const TickerSearch = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,10 @@ const TickerSearch = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
+
+    console.log(getAutoComplete(ticker));
+     
+
     if (regex.test(ticker)) {
       dispatch(yahooTickerSearch(ticker));
       setTimeout(() => {

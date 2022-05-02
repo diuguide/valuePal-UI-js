@@ -131,7 +131,8 @@ export const getAutoComplete = (input) => {
   authClient
     .get(`/calls/autoComplete?input=${input}`)
     .then((res) => {
-      return res.data;
+      console.log(res);
+      return res;
     })
     .catch((err) => console.log(err));
 };
