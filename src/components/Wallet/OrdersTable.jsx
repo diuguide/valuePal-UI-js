@@ -8,18 +8,19 @@ import { timeConverter } from "../../utilities/stockData";
 const OrdersTable = () => {
   const dispatch = useDispatch();
   const order = useSelector(walletState);
-  
 
   const getOrders = () => {
     dispatch(userOrders(localStorage.getItem("authorization")));
   };
 
   const procTimeStamp = (timestamp) => {
-    let temp = timestamp.split('T');
-    
-    let temp2 = temp[1].split('.');
-    return temp[0] + " " +  temp2[0] + " EST";
-  }
+    if (timestamp != null) {
+      let temp = timestamp.split("T");
+
+      let temp2 = temp[1].split(".");
+      return temp[0] + " " + temp2[0] + " EST";
+    }
+  };
 
   useEffect(() => {
     getOrders();
@@ -27,10 +28,10 @@ const OrdersTable = () => {
 
   const rowStyle = {
     fontSize: "10px",
-    ticker : {
-      fontSize: "20px"
-    }
-  }
+    ticker: {
+      fontSize: "20px",
+    },
+  };
 
   return (
     <>
@@ -50,13 +51,12 @@ const OrdersTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {order.order.orders.length > 0 ?
+                {order.order.orders.length > 0 ? (
                   order.order.orders.map((order, index) => {
-                    
                     return (
                       <tr style={rowStyle} key={index}>
-                        <td >{procTimeStamp(order.timestamp)}</td>
-                        <td>{order.orderType == 'B' ? "Buy" : "Sell"}</td>
+                        <td>{procTimeStamp(order.timestamp)}</td>
+                        <td>{order.orderType == "B" ? "Buy" : "Sell"}</td>
                         <td style={rowStyle.ticker}>{order.ticker}</td>
                         <td>{order.price.toFixed(2)}</td>
                         <td>{order.quantity}</td>
@@ -64,9 +64,12 @@ const OrdersTable = () => {
                         <td>{order.status}</td>
                       </tr>
                     );
-                  }) : (
-                    <div className="empty-msg">There doesn't seem to be anything here...</div>
-                  )}
+                  })
+                ) : (
+                  <div className="empty-msg">
+                    There doesn't seem to be anything here...
+                  </div>
+                )}
               </tbody>
             </Table>
           </Col>
