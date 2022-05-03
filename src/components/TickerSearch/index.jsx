@@ -21,10 +21,8 @@ const TickerSearch = () => {
 
   const handleChange = (e) => {
     const { value } = e.target;
-    setTicker(value);
+    setTicker(value.toUpperCase());
   };
-
-  const regex = /^[A-Z]+$/;
 
   const handleClick = (e) => {
     e.preventDefault();
