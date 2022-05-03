@@ -30,26 +30,15 @@ const TickerSearch = () => {
     e.preventDefault();
 
     console.log(getAutoComplete(ticker));
-     
 
-    if (regex.test(ticker)) {
-      dispatch(yahooTickerSearch(ticker));
-      setTimeout(() => {
-        dispatch(
-          yahooTickerHistory({ api: 2, interval: "1m", range: "1d", ticker })
-        );
-      }, 500);
-
-      setTicker("");
-    } else {
-      setTicker("");
+    dispatch(yahooTickerSearch(ticker));
+    setTimeout(() => {
       dispatch(
-        showMessage("Must be all UPPERCASE, no numbers, or special characters!")
+        yahooTickerHistory({ api: 2, interval: "1m", range: "1d", ticker })
       );
-      setTimeout(() => {
-        dispatch(hideMessage());
-      }, 5000);
-    }
+    }, 500);
+
+    setTicker("");
   };
   return (
     <>
