@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userOrders, walletState } from "../../slice/wallet/walletSlice";
 import Loader from "../Loader/Loader";
-import { timeConverter } from "../../utilities/stockData";
+
 
 const OrdersTable = () => {
   const dispatch = useDispatch();
