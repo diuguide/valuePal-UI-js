@@ -6,7 +6,7 @@ import OrdersTable from "../Wallet/OrdersTable";
 
 const TableWrapper = () => {
   const [tabSelect, setTabSelect] = useState("holding");
-console.log("keeping my stats up");
+
   const renderList = () => {
     switch (tabSelect) {
       case "holding":
