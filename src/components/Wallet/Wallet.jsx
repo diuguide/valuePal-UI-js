@@ -8,18 +8,13 @@ const Wallet = () => {
 
   const styling = {
     container: {
-      borderRadius: "10px",
-      padding: "10px",
+      
     },
     font: {
-      color: "white",
+      
     },
     value: {
-      marginLeft: "5px",
-      padding: "0px 6px",
-      border: "1px solid black",
-      borderRadius: "5px",
-      backgroundColor: "white",
+      
     },
   };
 
@@ -34,7 +29,7 @@ const Wallet = () => {
   return (
     <>
       {walletData.isLoaded ? (
-        <Row style={styling.container} className="bg-dark mt-2">
+        <Row style={styling.container} className="">
           <Col className="d-flex">
             <div style={styling.font}>Cash: </div>
             <div style={styling.value}>

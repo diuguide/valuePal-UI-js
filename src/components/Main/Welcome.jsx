@@ -14,6 +14,12 @@ const Welcome = () => {
   const auth = useSelector(authState);
   const tickerData = useSelector(tickerDataState);
 
+  const styleObj = {
+    tableWrapper : {
+
+    }
+  }
+
   return (
     <>
       <Container>
@@ -26,7 +32,6 @@ const Welcome = () => {
                 {auth.isAuthenticated && tickerData.dataLoaded && (
                   <PurchasePanelWrapper />
                 )}
-                {auth.isAuthenticated && <Wallet></Wallet>}
               </Col>
               <Col className="pt-4" lg={6}>
                 <HistChartWrapper />
@@ -34,7 +39,7 @@ const Welcome = () => {
             </Row>
             <>
               {auth.isAuthenticated && (
-                <Row className="bg-light">
+                <Row style={styleObj.tableWrapper} className="border rounded-3">
                   <Col>
                     <TableWrapper />
                   </Col>
