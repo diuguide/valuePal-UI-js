@@ -6,7 +6,7 @@ import TickerResults from "../TickerSearch/Results";
 import { tickerDataState } from "../../slice/data/tickerSearchSlice";
 import HistChartWrapper from "../Charts/TickerHistory/Wrapper";
 import Register from "../Auth";
-import Wallet from "../Wallet/Wallet";
+
 import PurchasePanelWrapper from "../Wallet/PurchasePanelWrapper";
 import TableWrapper from "./TableWrapper";
 
@@ -16,7 +16,8 @@ const Welcome = () => {
 
   const styleObj = {
     tableWrapper : {
-        padding: "10px"
+        padding: "10px",
+        
     }
   }
 
