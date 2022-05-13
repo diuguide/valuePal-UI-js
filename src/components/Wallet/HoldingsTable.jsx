@@ -18,11 +18,13 @@ const HoldingsTable = () => {
 
   const rowStyle = {
     ticker: {
-      display: "flex",
-      justifyContent: "center",
-      alignContent: "center",
-      fontWeight: 900,
-      fontSize: "32px"
+      
+    },
+    quantity: {},
+    price:{},
+    table:{
+      height:"250px",
+      
     }
   };
 
@@ -125,8 +127,8 @@ const HoldingsTable = () => {
       {walletData.holding.isLoaded ? (
         <>
           <Row>
-            <Col>
-              <Table striped bordered hover>
+            <Col className='border rounded'>
+              <Table style={rowStyle.table} hover>
                 <thead>
                   <tr>
                     <th>Ticker</th>

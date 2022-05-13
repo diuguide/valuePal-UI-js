@@ -16,7 +16,7 @@ const Welcome = () => {
 
   const styleObj = {
     tableWrapper : {
-
+        padding: "10px"
     }
   }
 

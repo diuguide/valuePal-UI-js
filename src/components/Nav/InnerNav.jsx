@@ -2,7 +2,7 @@ import { Nav } from "react-bootstrap";
 
 const InnerNav = ({ page }) => {
   return (
-    <Nav variant="tabs">
+    <Nav>
       <Nav.Item>
         <Nav.Link onClick={() => page("holding")}>Holdings</Nav.Link>
       </Nav.Item>

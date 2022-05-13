@@ -8,13 +8,17 @@ const Wallet = () => {
 
   const styling = {
     container: {
-      
+      paddingTop: "10px",
+      paddingBottom: "5px",
     },
     font: {
-      
+      color: "green",
+      fontSize: "12px",
+      fontWeight: "700",
     },
     value: {
-      
+      fontSize: "12px",
+      paddingLeft: "5px",
     },
   };
 
@@ -29,22 +33,23 @@ const Wallet = () => {
   return (
     <>
       {walletData.isLoaded ? (
-        <Row style={styling.container} className="">
+        <Row style={styling.container}>
           <Col className="d-flex">
-            <div style={styling.font}>Cash: </div>
+            <div style={styling.font}>CASH </div>
             <div style={styling.value}>
-              {walletData.user.totalCash.toFixed(2)}
+              ${walletData.user.totalCash.toFixed(2)}
             </div>
           </Col>
           <Col className="d-flex">
-            <div style={styling.font}>Assets: </div>
+            <div style={styling.font}>ASSETS </div>
             <div style={styling.value}>
-              {calculateTotalAssetValue().toFixed(2)}
+              ${calculateTotalAssetValue().toFixed(2)}
             </div>
           </Col>
           <Col className="d-flex">
-            <div style={styling.font}>Value: </div>
+            <div style={styling.font}>TOTAL </div>
             <div style={styling.value}>
+              $
               {(walletData.user.totalCash + calculateTotalAssetValue()).toFixed(
                 2
               )}
