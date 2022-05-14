@@ -24,6 +24,7 @@ const HoldingsTable = () => {
     price:{},
     table:{
       height:"250px",
+      overflow:"scroll",
       
     }
   };

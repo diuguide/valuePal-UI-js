@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { userOrders, walletState } from "../../slice/wallet/walletSlice";
 import Loader from "../Loader/Loader";
 
-
 const OrdersTable = () => {
   const dispatch = useDispatch();
   const order = useSelector(walletState);
@@ -27,7 +26,14 @@ const OrdersTable = () => {
   }, []);
 
   const rowStyle = {
-    
+    ticker: {},
+    quantity: {},
+    price: {},
+    table: {
+      
+      maxHeight: "250px",
+      overflow: "auto",
+    },
   };
 
   return (
@@ -35,7 +41,7 @@ const OrdersTable = () => {
       {order.order.isLoaded ? (
         <Row>
           <Col>
-            <Table striped bordered hover>
+            <Table style={rowStyle.table} hover>
               <thead>
                 <tr>
                   <th>Timestamp</th>
