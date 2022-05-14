@@ -123,7 +123,10 @@ const HoldingsTable = () => {
     quantity: {},
     price: {},
     avg_price: {},
-    table: {},
+    table: {
+      maxHeight: "300px",
+      overflow: "auto",
+    },
     button: {
       height: "20px",
       fontSize: "10px",
@@ -137,9 +140,16 @@ const HoldingsTable = () => {
       {walletData.holding.isLoaded ? (
         <>
           <Row>
-            <Col className="border rounded">
-              <Table style={rowStyle.table} hover>
-                <thead>
+            <Col style={rowStyle.table} className="border rounded">
+              <Table hover>
+                <thead
+                  style={{
+                    position: "sticky",
+                    top: "0",
+                    zIndex: "1",
+                    backgroundColor: "white",
+                  }}
+                >
                   <tr>
                     <th>Ticker</th>
                     <th>Quantity</th>
@@ -155,11 +165,11 @@ const HoldingsTable = () => {
                     walletData.holding.holdings.map((ticker, index) => {
                       return (
                         <HoldingRow
-                        key={index}
-                        index={index}
-                        ticker={ticker}
-                        ChangeCell={ChangeCell}
-                        TotalCell={TotalCell}
+                          key={index}
+                          index={index}
+                          ticker={ticker}
+                          ChangeCell={ChangeCell}
+                          TotalCell={TotalCell}
                         />
                       );
                     })

@@ -40,7 +40,7 @@ const OrdersTable = () => {
       {order.order.isLoaded ? (
         <Row>
           <Col style={rowStyle.table}>
-            <Table style={rowStyle.table} hover>
+            <Table  hover>
               <thead
                 style={{
                   position: "sticky",
