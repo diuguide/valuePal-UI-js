@@ -1,18 +1,30 @@
 import { Button, Modal } from "react-bootstrap";
 
+import TickerResults from "../TickerSearch/Results";
+
 const OrderModal = ({ show, setShow, data, walletData }) => {
   const handleClose = () => setShow(false);
-  console.log("inner wallet data: ", walletData.holding.holdings[data]);
+  const rowStyle = {
+    modal: {
+      width: "80%",
+      height: "50vh",
+    },
+  };
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal
+        style={rowStyle.modal}
+        className="w-80"
+        show={show}
+        onHide={handleClose}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Create Order</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {data != null
-            ? walletData.holding.holdings[data].ticker
-            : "Loading..."}
+          <div>
+            <TickerResults />
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

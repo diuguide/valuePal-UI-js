@@ -1,7 +1,16 @@
 import OrderModal from "./OrderModal";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  tickerDataState,
+  yahooTickerSearch,
+} from "../../slice/data/tickerSearchSlice";
+import { yahooTickerHistory } from "../../slice/data/tickerHistorySlice";
+import { authState } from "../../slice/auth/authSlice";
 
 const HoldingRow = ({ index, ticker, ChangeCell, TotalCell, walletData }) => {
+  const auth = useSelector(authState);
+  const tickerData = useSelector(tickerDataState);
   const rowStyle = {
     ticker: {},
     quantity: {},
@@ -15,7 +24,7 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell, walletData }) => {
       marginLeft: "20px",
     },
   };
-
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [data, setData] = useState();
 
@@ -23,10 +32,20 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell, walletData }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    setData(e.target.id);
-    console.log("click click tick boom", e.target.id);
-    // returns and activates a modal, needs to return from here so latest data is included and not rendered ahead of time below
-    handleShow();
+    if (ticker != null) {
+      setData(ticker.ticker);
+
+      dispatch(yahooTickerSearch(ticker.ticker));
+      let newtk = ticker.ticker;
+      setTimeout(() => {
+        dispatch(
+          yahooTickerHistory({ api: 2, interval: "1m", range: "1d", newtk })
+        );
+      }, 500);
+
+      // returns and activates a modal, needs to return from here so latest data is included and not rendered ahead of time below
+      handleShow();
+    }
   };
 
   return (
@@ -39,7 +58,14 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell, walletData }) => {
         <button id={index} onClick={handleClick}>
           ++ Order
         </button>
-        <OrderModal show={show} setShow={setShow} data={data} walletData={walletData}/>
+        {auth.isAuthenticated && tickerData.dataLoaded && (
+          <OrderModal
+            show={show}
+            setShow={setShow}
+            data={data}
+            walletData={walletData}
+          />
+        )}
       </td>
       <td style={rowStyle.change}>
         <ChangeCell price={ticker.price} avgPrice={ticker.avgPrice} />
