@@ -1,13 +1,12 @@
 import { Button, Modal, Row, Col } from "react-bootstrap";
 import HistChartWrapper from "../Charts/TickerHistory/Wrapper";
 import TickerResults from "../TickerSearch/Results";
+import PurchasePanelWrapper from "./PurchasePanelWrapper";
 
 const OrderModal = ({ show, setShow, data, walletData }) => {
   const handleClose = () => setShow(false);
   const rowStyle = {
-    modal: {
-     
-    },
+    modal: {},
   };
   return (
     <>
@@ -25,10 +24,10 @@ const OrderModal = ({ show, setShow, data, walletData }) => {
             <Col>
               <TickerResults />
             </Col>
-            
           </Row>
-          <Row></Row>
-          
+          <Row>
+            <PurchasePanelWrapper />
+          </Row>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
