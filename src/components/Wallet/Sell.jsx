@@ -33,7 +33,7 @@ const SellPanel = () => {
     });
     setTimeout(() => {
       dispatch(getUserData(localStorage.getItem("authorization")));
-    }, 500);
+    }, 2000);
   };
 
   const styling = {

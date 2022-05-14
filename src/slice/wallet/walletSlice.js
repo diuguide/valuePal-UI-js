@@ -192,7 +192,7 @@ export const walletSlice = createSlice({
         state.holding.isLoaded = false;
       })
       .addCase(userHoldings.fulfilled, (state, action) => {
-      
+        console.log("complete purchase: ", action.payload);
         if (action.payload.length > 0) {
           state.holding.isLoading = false;
           state.holding.isLoaded = true;

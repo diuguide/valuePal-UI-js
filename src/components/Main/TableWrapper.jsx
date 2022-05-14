@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { walletState } from "../../slice/wallet/walletSlice";
 
 const TableWrapper = () => {
-  const [tabSelect, setTabSelect] = useState("holding");
+  const [tabSelect, setTabSelect] = useState("analytics");
   const wallet = useSelector(walletState);
   const renderList = () => {
     switch (tabSelect) {
