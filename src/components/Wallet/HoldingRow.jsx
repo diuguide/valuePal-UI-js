@@ -39,7 +39,7 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell, walletData }) => {
       let newtk = ticker.ticker;
       setTimeout(() => {
         dispatch(
-          yahooTickerHistory({ api: 2, interval: "1m", range: "1d", newtk })
+          yahooTickerHistory({ api: 2, interval: "1m", range: "1d", ticker:ticker.ticker })
         );
       }, 500);
 
