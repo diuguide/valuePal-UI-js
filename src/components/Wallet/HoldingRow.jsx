@@ -1,8 +1,6 @@
-import { Row, Col } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const HoldingRow = ({ index, ticker, ChangeCell, TotalCell }) => {
-  
-
   const rowStyle = {
     ticker: {},
     quantity: {},
@@ -16,15 +14,20 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell }) => {
       marginLeft: "20px",
     },
   };
+
+  const handleClick = () => {
+    
+  };
+
   return (
     <tr key={index}>
       <td style={rowStyle.ticker}>{ticker.ticker}</td>
       <td style={rowStyle.quantity}>{ticker.quantity}</td>
       <td style={rowStyle.price}>{ticker.price.toFixed(2)}</td>
-      <td style={rowStyle.avg_price}>
-        {ticker.avgPrice.toFixed(2)}
+      <td style={rowStyle.avg_price}>{ticker.avgPrice.toFixed(2)}</td>
+      <td>
+        <div id="1" onClick={() => handleClick()}></div>
       </td>
-      <td></td>
       <td style={rowStyle.change}>
         <ChangeCell price={ticker.price} avgPrice={ticker.avgPrice} />
       </td>

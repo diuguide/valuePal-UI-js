@@ -14,10 +14,6 @@ const HoldingsTable = () => {
     dispatch(userHoldings(localStorage.getItem("authorization")));
   };
 
-  const handleClick = () => {
-    console.log("CLICK: ");
-  };
-
   useEffect(() => {
     getHoldings();
   }, []);
