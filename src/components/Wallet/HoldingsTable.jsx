@@ -166,6 +166,7 @@ const HoldingsTable = () => {
                           ticker={ticker}
                           ChangeCell={ChangeCell}
                           TotalCell={TotalCell}
+                          walletData={walletData}
                         />
                       );
                     })

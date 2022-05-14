@@ -1,6 +1,7 @@
-import { Button } from "react-bootstrap";
+import OrderModal from "./OrderModal";
+import { useState } from "react";
 
-const HoldingRow = ({ index, ticker, ChangeCell, TotalCell }) => {
+const HoldingRow = ({ index, ticker, ChangeCell, TotalCell, walletData }) => {
   const rowStyle = {
     ticker: {},
     quantity: {},
@@ -15,8 +16,17 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell }) => {
     },
   };
 
+  const [show, setShow] = useState(false);
+  const [data, setData] = useState();
+
+  const handleShow = () => setShow(true);
+
   const handleClick = (e) => {
-    console.log("click click tick boom",e.target.id);
+    e.preventDefault();
+    setData(e.target.id);
+    console.log("click click tick boom", e.target.id);
+    // returns and activates a modal, needs to return from here so latest data is included and not rendered ahead of time below
+    handleShow();
   };
 
   return (
@@ -26,7 +36,10 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell }) => {
       <td style={rowStyle.price}>{ticker.price.toFixed(2)}</td>
       <td style={rowStyle.avg_price}>{ticker.avgPrice.toFixed(2)}</td>
       <td>
-        <button id={index} onClick={handleClick}>++ Order</button>
+        <button id={index} onClick={handleClick}>
+          ++ Order
+        </button>
+        <OrderModal show={show} setShow={setShow} data={data} walletData={walletData}/>
       </td>
       <td style={rowStyle.change}>
         <ChangeCell price={ticker.price} avgPrice={ticker.avgPrice} />
