@@ -1,8 +1,10 @@
-import { Row, Col, Table } from "react-bootstrap";
+import { Row, Col, Table, Button } from "react-bootstrap";
+
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { walletState, userHoldings } from "../../slice/wallet/walletSlice";
 import Loader from "../Loader/Loader";
+import HoldingRow from "./HoldingRow";
 
 const HoldingsTable = () => {
   const walletData = useSelector(walletState);
@@ -12,28 +14,19 @@ const HoldingsTable = () => {
     dispatch(userHoldings(localStorage.getItem("authorization")));
   };
 
+  const handleClick = () => {
+    console.log("CLICK: ");
+  };
+
   useEffect(() => {
     getHoldings();
   }, []);
-
-  const rowStyle = {
-    ticker: {
-      
-    },
-    quantity: {},
-    price:{},
-    table:{
-      height:"250px",
-      overflow:"scroll",
-      
-    }
-  };
 
   const ChangeCell = ({ price, avgPrice }) => {
     const style = {
       container: {
         display: "flex",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
       },
       left: {
         display: "block",
@@ -63,24 +56,20 @@ const HoldingsTable = () => {
             </div>
           </div>
           <div style={style.right}>
-          <div style={style.arrow}>
-            {price - avgPrice <= 0 ? (
-              <div>&#8595;</div>
-            ) : (
-              <div>&#8593;</div>
-            )}
-          </div>
+            <div style={style.arrow}>
+              {price - avgPrice <= 0 ? <div>&#8595;</div> : <div>&#8593;</div>}
+            </div>
           </div>
         </div>
       </>
     );
   };
 
-  const TotalCell = ({ticker}) => {
+  const TotalCell = ({ ticker }) => {
     const style = {
       container: {
         display: "flex",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
       },
       left: {
         display: "block",
@@ -104,31 +93,51 @@ const HoldingsTable = () => {
       <>
         <div style={style.container}>
           <div style={style.left}>
-            <div style={style.dollar}>$ {(ticker.price * ticker.quantity).toFixed(2)}</div>
+            <div style={style.dollar}>
+              $ {(ticker.price * ticker.quantity).toFixed(2)}
+            </div>
             <div style={style.percentage}>
-              ${((ticker.price * ticker.quantity) - (ticker.avgPrice * ticker.quantity)).toFixed(2)}
+              $
+              {(
+                ticker.price * ticker.quantity -
+                ticker.avgPrice * ticker.quantity
+              ).toFixed(2)}
             </div>
           </div>
           <div style={style.right}>
-          <div style={style.arrow}>
-            {ticker.price - ticker.avgPrice <= 0 ? (
-              <div>&#8595;</div>
-            ) : (
-              <div>&#8593;</div>
-            )}
-          </div>
+            <div style={style.arrow}>
+              {ticker.price - ticker.avgPrice <= 0 ? (
+                <div>&#8595;</div>
+              ) : (
+                <div>&#8593;</div>
+              )}
+            </div>
           </div>
         </div>
       </>
     );
-  }
+  };
+
+  const rowStyle = {
+    ticker: {},
+    quantity: {},
+    price: {},
+    avg_price: {},
+    table: {},
+    button: {
+      height: "20px",
+      fontSize: "10px",
+      border: "none",
+      marginLeft: "20px",
+    },
+  };
 
   return (
     <>
       {walletData.holding.isLoaded ? (
         <>
           <Row>
-            <Col className='border rounded'>
+            <Col className="border rounded">
               <Table style={rowStyle.table} hover>
                 <thead>
                   <tr>
@@ -136,6 +145,7 @@ const HoldingsTable = () => {
                     <th>Quantity</th>
                     <th>Current Price</th>
                     <th>Purchase Price (Avg)</th>
+                    <th></th>
                     <th>Change</th>
                     <th>Total Value</th>
                   </tr>
@@ -144,26 +154,13 @@ const HoldingsTable = () => {
                   {walletData.wallet.length > 0 ? (
                     walletData.holding.holdings.map((ticker, index) => {
                       return (
-                        <tr key={index}>
-                          <td style={rowStyle.ticker}>{ticker.ticker}</td>
-                          <td style={rowStyle.quantity}>{ticker.quantity}</td>
-                          <td style={rowStyle.price}>
-                            {ticker.price.toFixed(2)}
-                          </td>
-                          <td style={rowStyle.avg_price}>
-                            {ticker.avgPrice.toFixed(2)}
-                          </td>
-                          <td style={rowStyle.change}>
-                            <ChangeCell
-                              price={ticker.price}
-                              avgPrice={ticker.avgPrice}
-                            />
-                          </td>
-                          {/* <td style={rowStyle.change}>{(ticker.price - ticker.avgPrice).toFixed(2)}</td> */}
-                          <td style={rowStyle.totalValue}>
-                            <TotalCell ticker={ticker}/>
-                          </td>
-                        </tr>
+                        <HoldingRow
+                        key={index}
+                        index={index}
+                        ticker={ticker}
+                        ChangeCell={ChangeCell}
+                        TotalCell={TotalCell}
+                        />
                       );
                     })
                   ) : (

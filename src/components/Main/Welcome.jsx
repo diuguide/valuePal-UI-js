@@ -17,7 +17,7 @@ const Welcome = () => {
   const styleObj = {
     tableWrapper : {
         padding: "10px",
-        
+        maxHeight: "400px"
     }
   }
 

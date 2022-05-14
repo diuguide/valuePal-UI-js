@@ -30,8 +30,7 @@ const OrdersTable = () => {
     quantity: {},
     price: {},
     table: {
-      
-      maxHeight: "250px",
+      maxHeight: "300px",
       overflow: "auto",
     },
   };
@@ -40,9 +39,16 @@ const OrdersTable = () => {
     <>
       {order.order.isLoaded ? (
         <Row>
-          <Col>
+          <Col style={rowStyle.table}>
             <Table style={rowStyle.table} hover>
-              <thead>
+              <thead
+                style={{
+                  position: "sticky",
+                  top: "0",
+                  zIndex: "1",
+                  backgroundColor: "white",
+                }}
+              >
                 <tr>
                   <th>Timestamp</th>
                   <th>Type</th>
@@ -57,7 +63,7 @@ const OrdersTable = () => {
                 {order.order.orders.length > 0 ? (
                   order.order.orders.map((order, index) => {
                     return (
-                      <tr style={rowStyle} key={index}>
+                      <tr key={index}>
                         <td>{procTimeStamp(order.timestamp)}</td>
                         <td>{order.orderType == "B" ? "Buy" : "Sell"}</td>
                         <td style={rowStyle.ticker}>{order.ticker}</td>
