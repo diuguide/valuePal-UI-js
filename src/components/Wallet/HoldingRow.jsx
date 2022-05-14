@@ -15,8 +15,8 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell }) => {
     },
   };
 
-  const handleClick = () => {
-    
+  const handleClick = (e) => {
+    console.log("click click tick boom",e.target.id);
   };
 
   return (
@@ -26,7 +26,7 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell }) => {
       <td style={rowStyle.price}>{ticker.price.toFixed(2)}</td>
       <td style={rowStyle.avg_price}>{ticker.avgPrice.toFixed(2)}</td>
       <td>
-        <div id="1" onClick={() => handleClick()}></div>
+        <button id={index} onClick={handleClick}>++ Order</button>
       </td>
       <td style={rowStyle.change}>
         <ChangeCell price={ticker.price} avgPrice={ticker.avgPrice} />
