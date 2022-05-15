@@ -14,27 +14,30 @@ const TickerResults = () => {
     changeAmt: 200,
   };
 
-
   return (
     <Row>
       <Col>
         <Row>
-          <Col>{dummyData.longName}</Col>
+          <Col className="fs-1 fw-bold">{dummyData.longName}</Col>
         </Row>
-        <Row>
-          <Col lg={5}>{dummyData.avgPrice}</Col>
-          <Col lg={1}>
+        <Row className="border-top border-bottom">
+          <Col lg={5} className="fs-1 fw-bold">
+            ${dummyData.avgPrice}
+          </Col>
+          <Col lg={1} className="fs-1 fw-bold">
             {dummyData.change < 0 ? <div>&#8595;</div> : <div>&#8593;</div>}
           </Col>
           <Col lg={3}>
             <Row>
-              <Col>{dummyData.changeAmt}</Col>
+              <Col className="fs-4">{dummyData.changeAmt.toFixed(2)}</Col>
             </Row>
             <Row>
-              <Col>{dummyData.change}%</Col>
+              <Col className="fs-4">{dummyData.change}%</Col>
             </Row>
           </Col>
-          <Col lg={3}>{dummyData.ticker}</Col>
+          <Col lg={3} className="fs-1">
+            {dummyData.ticker}
+          </Col>
         </Row>
         <Row>
           <Col>{dummyData.lastUpdated}</Col>
