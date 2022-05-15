@@ -35,6 +35,9 @@
       "react-app/jest"
     ]
   },
+  "overrides": {
+    "react-error-overlay": "6.0.9"
+  },
   "browserslist": {
     "production": [
       ">0.2%",

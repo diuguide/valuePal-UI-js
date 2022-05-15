@@ -2,7 +2,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { authState } from "../../slice/auth/authSlice";
 import TickerSearch from "../TickerSearch";
-import TickerResults from "../TickerSearch/Results";
+import TickerResults from "../TickerSearch/TickerResults";
 import { tickerDataState } from "../../slice/data/tickerSearchSlice";
 import HistChartWrapper from "../Charts/TickerHistory/Wrapper";
 import Register from "../Auth";
@@ -35,7 +35,7 @@ const Welcome = () => {
                 )}
               </Col>
               <Col className="pt-4" lg={6}>
-                <HistChartWrapper />
+                {/* <HistChartWrapper /> */}
               </Col>
             </Row>
             <>

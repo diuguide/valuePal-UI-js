@@ -41,7 +41,7 @@ const History = ({ data }) => {
     series: [
       {
         name: "USD",
-        data: data ? data.close : null,
+        // data: data.length > 0 ? data.close : null,
       },
     ],
   };
