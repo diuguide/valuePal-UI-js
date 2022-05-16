@@ -1,6 +1,5 @@
 import { Button, Modal, Row, Col } from "react-bootstrap";
-import HistChartWrapper from "../Charts/TickerHistory/Wrapper";
-import TickerResults from "../TickerSearch/Results";
+import TickerResults from "../TickerSearch/TickerResults";
 import PurchasePanelWrapper from "./PurchasePanelWrapper";
 
 const OrderModal = ({ show, setShow, data, walletData }) => {

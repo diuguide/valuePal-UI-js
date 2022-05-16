@@ -1,46 +1,55 @@
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { tickerDataState } from "../../slice/data/tickerSearchSlice";
+import { timeConverterFull } from "../../utilities/stockData";
 
 const TickerResults = () => {
-  const dummyData = {
-    avgPrice: 2830.43,
-    holding_id: 1,
-    longName: "Alphabet Inc.",
-    price: 2330.31,
-    quantity: 1,
-    ticker: "GOOG",
-    wallet_id: 1,
-    change: -0.34,
-    lastUpdated: "5/13/2022, 4:00:04 PM EDT",
-    changeAmt: 200,
+  const tickerData = useSelector(tickerDataState);
+
+  const rowStyle = {
+    change: {
+      color: tickerData.data.change > 0 ? "green" : "red",
+    },
   };
 
   return (
     <Row>
       <Col>
         <Row>
-          <Col className="fs-1 fw-bold">{dummyData.longName}</Col>
+          <Col className="fs-1 fw-bold">{tickerData.data.longName}</Col>
         </Row>
         <Row className="border-top border-bottom">
           <Col lg={5} className="fs-1 fw-bold">
-            ${dummyData.avgPrice}
+            ${tickerData.data.price?.toFixed(2)}
           </Col>
           <Col lg={1} className="fs-1 fw-bold">
-            {dummyData.change < 0 ? <div>&#8595;</div> : <div>&#8593;</div>}
+            {tickerData.data.change < 0 ? (
+              <div>&#8595;</div>
+            ) : (
+              <div>&#8593;</div>
+            )}
           </Col>
           <Col lg={3}>
             <Row>
-              <Col className="fs-4">{dummyData.changeAmt.toFixed(2)}</Col>
+              <Col style={rowStyle.change} className="fs-4">
+                {tickerData.data.change?.toFixed(2)}
+              </Col>
             </Row>
             <Row>
-              <Col className="fs-4">{dummyData.change}%</Col>
+              <Col style={rowStyle.change} className="fs-4">
+                {tickerData.data.changePercent?.toFixed(2)}%
+              </Col>
             </Row>
           </Col>
           <Col lg={3} className="fs-1">
-            {dummyData.ticker}
+            {tickerData.data.symbol}
           </Col>
         </Row>
         <Row>
-          <Col>{dummyData.lastUpdated}</Col>
+          <Col>
+            {" "}
+            Last Updated: {timeConverterFull(tickerData.data.time)} EDT
+          </Col>
         </Row>
       </Col>
     </Row>
