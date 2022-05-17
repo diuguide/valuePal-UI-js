@@ -32,6 +32,7 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell, walletData }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
+    console.log("click");
     if (ticker != null) {
       setData(ticker.ticker);
 
@@ -46,6 +47,7 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell, walletData }) => {
       // returns and activates a modal, needs to return from here so latest data is included and not rendered ahead of time below
       handleShow();
     }
+    handleShow();
   };
 
   return (
@@ -58,7 +60,7 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell, walletData }) => {
         <button id={index} onClick={handleClick}>
           ++ Order
         </button>
-        {auth.isAuthenticated && tickerData.dataLoaded && (
+        {auth.isAuthenticated && (
           <OrderModal
             show={show}
             setShow={setShow}
