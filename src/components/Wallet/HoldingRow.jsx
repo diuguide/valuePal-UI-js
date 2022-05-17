@@ -37,7 +37,7 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell, walletData }) => {
       setData(ticker.ticker);
 
       dispatch(yahooTickerSearch(ticker.ticker));
-      let newtk = ticker.ticker;
+      
       setTimeout(() => {
         dispatch(
           yahooTickerHistory({ api: 2, interval: "1m", range: "1d", ticker:ticker.ticker })
