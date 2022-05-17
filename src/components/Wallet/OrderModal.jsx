@@ -1,8 +1,9 @@
 import { Button, Modal, Row, Col } from "react-bootstrap";
+import MiniTicker from "../TickerSearch/MiniTicker";
 import TickerResults from "../TickerSearch/TickerResults";
 import PurchasePanelWrapper from "./PurchasePanelWrapper";
 
-const OrderModal = ({ show, setShow, data, walletData }) => {
+const OrderModal = ({ show, setShow, data, index, walletData }) => {
   const handleClose = () => setShow(false);
   const rowStyle = {
     modal: {},
@@ -21,11 +22,13 @@ const OrderModal = ({ show, setShow, data, walletData }) => {
         <Modal.Body>
           <Row>
             <Col>
-              <TickerResults />
+            <MiniTicker 
+            index={index}
+            />  
             </Col>
           </Row>
           <Row>
-            <PurchasePanelWrapper />
+            
           </Row>
         </Modal.Body>
         <Modal.Footer>

@@ -64,6 +64,7 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell, walletData }) => {
           <OrderModal
             show={show}
             setShow={setShow}
+            index={index}
             data={data}
             walletData={walletData}
           />
