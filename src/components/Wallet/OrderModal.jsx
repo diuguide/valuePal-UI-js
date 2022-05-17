@@ -11,7 +11,7 @@ const OrderModal = ({ show, setShow, data, walletData }) => {
     <>
       <Modal
         style={rowStyle.modal}
-        dialogClassName="modal-200w"
+        className="w-100"
         show={show}
         onHide={handleClose}
       >

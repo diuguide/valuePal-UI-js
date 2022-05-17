@@ -47,16 +47,8 @@ const SellPanel = () => {
     },
     form: {
       height: "25px",
-      width: "100px",
-    },
-    cost: {
-      height: "25px",
-      width: "100px",
-      backgroundColor: "white",
-      border: "1px grooved #ced4da",
-      borderRadius: "3px",
-      padding: ".065rem .75rem",
-    },
+      width: "75px",
+    }
   };
 
   return (
