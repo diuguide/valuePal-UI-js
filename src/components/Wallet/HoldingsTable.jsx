@@ -131,6 +131,10 @@ const HoldingsTable = () => {
     },
   };
 
+  const handleClickRow = () => {
+    console.log("Click with in the click");
+  }
+
   return (
     <>
       {walletData.holding.isLoaded ? (
@@ -160,7 +164,9 @@ const HoldingsTable = () => {
                   {walletData.wallet.length > 0 ? (
                     walletData.holding.holdings.map((ticker, index) => {
                       return (
+                        
                         <HoldingRow
+                        onClick={handleClickRow}
                           key={index}
                           index={index}
                           ticker={ticker}
