@@ -6,6 +6,7 @@ import newsDataReducer from "../slice/data/newsDataSlice";
 import tickerDataReducer from "../slice/data/tickerSearchSlice";
 import tickerHistoryReducer from "../slice/data/tickerHistorySlice";
 import walletReducer from "../slice/wallet/walletSlice";
+import adminReducer from "../slice/data/adminData";
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ export const store = configureStore({
     newsData: newsDataReducer,
     ticker: tickerDataReducer,
     tickerHist: tickerHistoryReducer,
-    wallet: walletReducer
+    wallet: walletReducer,
+    admin: adminReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
