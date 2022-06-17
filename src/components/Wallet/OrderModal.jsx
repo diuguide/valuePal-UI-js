@@ -6,13 +6,13 @@ import PurchasePanelWrapper from "./PurchasePanelWrapper";
 const OrderModal = ({ show, setShow, data, index, walletData }) => {
   const handleClose = () => setShow(false);
   const rowStyle = {
-    modal: {},
+    modal: {width:"80%"},
   };
   return (
     <>
       <Modal
         style={rowStyle.modal}
-        className="w-100"
+        dialogClassName="modal-90w"
         show={show}
         onHide={handleClose}
       >
@@ -22,14 +22,10 @@ const OrderModal = ({ show, setShow, data, index, walletData }) => {
         <Modal.Body>
           <Row>
             <Col>
-            <MiniTicker 
-            index={index}
-            />  
+              <MiniTicker index={index} />
             </Col>
           </Row>
-          <Row>
-            
-          </Row>
+          <Row></Row>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
