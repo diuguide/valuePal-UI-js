@@ -50,14 +50,24 @@ const HoldingRow = ({ index, ticker, ChangeCell, TotalCell, walletData }) => {
     handleShow();
   };
 
+  const style = {
+    button: {
+      borderRadius: "15px",
+      border: "none",
+      margin:"9px",
+      cursor:"pointer"
+    },
+    
+  }
+
   return (
     <tr key={index}>
       <td style={rowStyle.ticker}>{ticker.ticker}</td>
       <td style={rowStyle.quantity}>{ticker.quantity}</td>
       <td style={rowStyle.price}>{ticker.price.toFixed(2)}</td>
       <td style={rowStyle.avg_price}>{ticker.avgPrice.toFixed(2)}</td>
-      <td>
-        <button id={index} onClick={handleClick}>
+      <td style={style.buttonWrapper}>
+        <button style={style.button} id={index} onClick={handleClick}>
           ++ Order
         </button>
         {auth.isAuthenticated && (
